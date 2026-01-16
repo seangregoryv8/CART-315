@@ -149,7 +149,6 @@ function draw()
 let isAnyTrapActive = false;
 function drawButtonPanel()
 {
-    push();
     let elapsed = (millis() - startTimer) / 1000;
     timeLeft = max(0, timerLength - elapsed);
     
@@ -163,6 +162,7 @@ function drawButtonPanel()
             if (currentSecond % 5 === 0 && currentSecond != timerLength) sounds.beep.play();
         }
         else if (sounds.beep) sounds.beep.play();
+
     }
     
     // Detect when timer reaches 0
@@ -174,6 +174,7 @@ function drawButtonPanel()
     // Reset timer finished flag when new game starts
     if (timeLeft > 0) timerFinished = false;
     
+    push();
     translate(buttonCenterX, buttonCenterY)
 
     rectMode(CENTER);
@@ -194,6 +195,13 @@ function drawButtonPanel()
     
     noSmooth();
     image(isMouseOverButton && isMousePressed ? button.pressed : isAnyTrapActive ? button.dead : button.idle, 0, 0);
+    
+    fill(0);
+    scale(1);
+    rect(0, -45, 120, 40, 20);
+    fill(255);
+    textSize(6);
+    text("Don't let the count reach 0\nPress the button to reset it\nComplete each game to unlock it", 0, -45);
     pop();
 }
 
@@ -283,7 +291,7 @@ function mousePressed()
     {
         if (exactButtons.oneUp || exactButtons.speedUp) sounds.up.play();
         else if (exactButtons.oneDown || exactButtons.speedDown) sounds.down.play();
-        
+
         if (exactButtons.oneUp)
             currentValue++;
         else if (exactButtons.oneDown)

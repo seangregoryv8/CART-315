@@ -63,6 +63,7 @@ let exactEventTimeout = null;
 let exactEventRunning = false;
 function scheduleExactTrap()
 {
+    return;
     let delay = ranInt(5000, 15000);
     exactEventTimeout = setTimeout(() => {
         if (!exactEventRunning)

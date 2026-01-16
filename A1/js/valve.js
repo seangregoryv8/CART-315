@@ -164,6 +164,7 @@ let valveEventTimeout = null;
 let valveEventRunning = false;
 function scheduleValveTrap()
 {
+    return;
     let delay = ranInt(5000, 15000);
     valveEventTimeout = setTimeout(() => {
         if (!valveEventRunning)
