@@ -4,6 +4,9 @@ let WIDTH = 1200;
 let HEIGHT = 800;
 let SQUARE = 400;
 
+let traps = {
+    numberPad: false
+}
 
 let button = {
     idle: "",
@@ -16,6 +19,7 @@ let sounds = {
     press: "",
     explode: ""
 }
+
 let vhsFont = "";
 
 let buttonOffset =  { x: 65, y: 100 };
@@ -38,6 +42,20 @@ function preload()
     sounds.beep = loadSound("assets/sounds/timer.mp3");
     sounds.press = loadSound("assets/sounds/button.mp3");
     sounds.explode = loadSound("assets/sounds/explode.mp3");
+
+    numberPad.sprites.idle = loadImage("assets/images/numberPad/np00.png");
+    numberPad.sprites.one = loadImage("assets/images/numberPad/np01.png");
+    numberPad.sprites.two = loadImage("assets/images/numberPad/np02.png");
+    numberPad.sprites.three = loadImage("assets/images/numberPad/np03.png");
+    numberPad.sprites.four = loadImage("assets/images/numberPad/np04.png");
+    numberPad.sprites.five = loadImage("assets/images/numberPad/np05.png");
+    numberPad.sprites.six = loadImage("assets/images/numberPad/np06.png");
+    numberPad.sprites.seven = loadImage("assets/images/numberPad/np07.png");
+    numberPad.sprites.eight = loadImage("assets/images/numberPad/np08.png");
+    numberPad.sprites.nine = loadImage("assets/images/numberPad/np09.png");
+    numberPad.sprites.zero = loadImage("assets/images/numberPad/np10.png");
+    numberPad.sprites.enter = loadImage("assets/images/numberPad/np11.png");
+    numberPad.sprites.dead = loadImage("assets/images/numberPad/np12.png");
 }
 
 function setup()
@@ -54,7 +72,6 @@ function setup()
     // grab the first 6
     sideColours = shuffled.slice(0, 6);
 
-
     startTimer = millis();
 }
 
@@ -62,11 +79,18 @@ function draw()
 {
     drawGrid();
     drawButtonPanel();
+    drawNumberPad();
+
+    for (let trap in traps)
+    {
+        if (trap == true) isAnyTrapActive = true;
+    }
 }
 
 let isAnyTrapActive = false;
 function drawButtonPanel()
 {
+    push();
     let elapsed = (millis() - startTimer) / 1000;
     timeLeft = max(0, timerLength - elapsed);
     
@@ -105,13 +129,16 @@ function drawButtonPanel()
     let distance = dist(mouseX, mouseY, buttonCenterX, buttonCenterY);
     isMouseOverButton = distance < (buttonSize / 4);
     
+    noSmooth();
     image(isMouseOverButton && isMousePressed ? button.pressed : isAnyTrapActive ? button.dead : button.idle, buttonOffset.x, buttonOffset.y);
+    pop();
 }
-
 
 function drawGrid()
 {
     push();
+    stroke(0);
+    strokeWeight(6);
     let index = 0;
     for (let i = 0; i < WIDTH / SQUARE; i++)
     {
@@ -127,7 +154,7 @@ function drawGrid()
 
 function keyPressed()
 {
-    if (keyIsPressed && key == " ")
+    if (keyIsPressed && key == "1")
     {
         isAnyTrapActive = !isAnyTrapActive;
     }
@@ -136,6 +163,11 @@ function keyPressed()
 function mouseReleased()
 {
     isMousePressed = false;
+    // Reset all numberPad pressed states
+    for (let key in numberPad.pressed)
+        numberPad.pressed[key] = false;
+    numberPad.pressed.idle = true;
+    lastButtonPressed = IdleDeadline;
 }
 
 function mousePressed()
@@ -145,6 +177,17 @@ function mousePressed()
         sounds.press.play();
         isMousePressed = true;
         startTimer = millis();
+        return false;
+    }
+    
+    // Check if clicking on numberPad
+    let buttonClicked = numberPad.getButtonAtMouse();
+    if (buttonClicked)
+    {
+        numberPad.pressed[buttonClicked] = true;
+        lastButtonPressed = buttonClicked;
+        sounds.press.play();
+        console.log("Number pad button clicked: " + buttonClicked);
         return false;
     }
 }
