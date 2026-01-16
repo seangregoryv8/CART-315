@@ -4,6 +4,7 @@ let valveAngle = 0;
 let isDraggingValve = false;
 
 const TWO_PI = Math.PI * 2;
+let TURNDIRECTION = 1;
 
 let lastMouseAngle = 0;
 let totalValveTurn = 0;
@@ -29,7 +30,10 @@ function drawValve()
         if (delta < -Math.PI) delta += TWO_PI;
 
         valveAngle += delta;
-        totalValveTurn += abs(delta);
+
+        totalValveTurn += (Math.sign(delta) === TURNDIRECTION) ? Math.abs(delta) : -Math.abs(delta);
+
+        totalValveTurn = constrain(totalValveTurn, 0, TWO_PI * valveRotationAmount);
 
         lastMouseAngle = currentAngle;
 
@@ -107,12 +111,18 @@ function valveMousePressed()
         let dx = mouseX - VOX;
         let dy = mouseY - VOY;
         lastMouseAngle = atan(dy, dx);
+        sounds.turn.play();
+        sounds.turn.setLoop(true);
         return true;
     }
     return false;
 }
 
-function valveMouseReleased() { isDraggingValve = false; }
+function valveMouseReleased()
+{
+    sounds.turn.stop();
+    isDraggingValve = false;
+}
 
 /**
  * Moves those particles in a randomized order for flair.
@@ -160,6 +170,8 @@ function scheduleValveTrap()
         {
             totalValveTurn = 0;
             valveRotationAmount = ranInt(5, 15);
+            TURNDIRECTION = (Math.random() < 0.5) ? -1 : 1;
+            sounds.steam.play();
             valveStartEvent();
         }
     }, delay);
@@ -173,6 +185,8 @@ function valveStartEvent()
 
 function valveEndEvent()
 {
+    sounds.steam.stop();
+    sounds.turn.stop();
     valveEventRunning = false;
     traps.valve = false;
     scheduleValveTrap();

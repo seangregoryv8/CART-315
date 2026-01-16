@@ -18,7 +18,9 @@ let button = {
 let sounds = {
     beep: "",
     press: "",
-    explode: ""
+    explode: "",
+    steam: "",
+    turn: ""
 }
 
 let vhsFont = "";
@@ -43,6 +45,8 @@ function preload()
     sounds.beep = loadSound("assets/sounds/timer.mp3");
     sounds.press = loadSound("assets/sounds/button.mp3");
     sounds.explode = loadSound("assets/sounds/explode.mp3");
+    sounds.steam = loadSound("assets/sounds/steam.mp3");
+    sounds.turn = loadSound("assets/sounds/turn2.mp3");
 
     numberPad.sprites.idle = loadImage("assets/images/numberPad/np00.png");
     numberPad.sprites.one = loadImage("assets/images/numberPad/np01.png");
