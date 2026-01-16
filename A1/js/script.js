@@ -94,6 +94,7 @@ function draw()
     drawGrid();
     drawButtonPanel();
     drawNumberPad();
+    drawValve();
 
     isAnyTrapActive = false;
     for (let trap in traps)
@@ -199,6 +200,8 @@ function stringToNumber(numStr)
 function mouseReleased()
 {
     isMousePressed = false;
+    valveMouseReleased();
+    
     // Reset all numberPad pressed states
     if (numberPadEventRunning)
     {
@@ -246,4 +249,7 @@ function mousePressed()
             return false;
         }
     }
+    
+    // Check if clicking on valve
+    if (valveMousePressed()) return false;
 }

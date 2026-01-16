@@ -94,7 +94,7 @@ function drawNumberPad()
     if (numberPadEventRunning)
     {
         rectMode(CENTER);
-        rect(0, -50, 130, 20);
+        rect(0, -50, 100, 20);
         textAlign(CENTER, CENTER);
         textFont(vhsFont);
         fill(255, 0, 0);
@@ -123,12 +123,7 @@ function checkNumberPadSolution()
 let numberPadEntry = -1;
 function solveNumberPad(number)
 {
-    if (numberPadEntry === -1) numberPadEntry = number;
-    else
-    {
-        numberPadEntry = Number(String(numberPadEntry) + String(number));
-    }
-    console.log("Current number pad entry: " + numberPadEntry);
+    numberPadEntry = (numberPadEntry === -1) ? number : Number(String(numberPadEntry) + String(number));
 }
 
 let numberPadEventTimeout = null;
@@ -136,6 +131,7 @@ let numberPadEventRunning = false;
 let numberPadNumber = 0;
 function scheduleNumberPadTrap()
 {
+    return; // Disable number pad trap for now
     let delay = ranInt(5000, 15000);
     numberPadEventTimeout = setTimeout(() => {
         if (!numberPadEventRunning)
