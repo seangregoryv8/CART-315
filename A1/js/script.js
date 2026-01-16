@@ -6,7 +6,8 @@ let SQUARE = 400;
 
 let traps = {
     numberPad: false,
-    valve: false
+    valve: false,
+    exact: false
 }
 
 let button = {
@@ -15,12 +16,34 @@ let button = {
     dead: ""
 }
 
+let exactTrapSprites = 
+{
+    buttons:
+    {
+        oneUp: "",
+        oneDown: "",
+        speedUp: "",
+        speedDown: ""
+    },
+    button:
+    {
+        idle: "",
+        pressed: "",
+        dead: ""
+    }
+}
+
 let sounds = {
     beep: "",
     press: "",
     explode: "",
     steam: "",
-    turn: ""
+    turn: "",
+    circus: "",
+    cringe: "",
+    up: "",
+    down: "",
+    victory: ""
 }
 
 let vhsFont = "";
@@ -62,6 +85,14 @@ function preload()
     numberPad.sprites.enter = loadImage("assets/images/numberPad/np11.png");
     numberPad.sprites.dead = loadImage("assets/images/numberPad/np12.png");
 
+    exactTrapSprites.button.idle = loadImage("assets/images/buttonHover/btnHover0.png");
+    exactTrapSprites.button.pressed = loadImage("assets/images/buttonHover/btnHover1.png");
+    exactTrapSprites.button.dead = loadImage("assets/images/buttonHover/btnHover2.png");
+    exactTrapSprites.buttons.oneUp = loadImage("assets/images/buttons/btn0.png");
+    exactTrapSprites.buttons.oneDown = loadImage("assets/images/buttons/btn2.png");
+    exactTrapSprites.buttons.speedUp = loadImage("assets/images/buttons/btn1.png");
+    exactTrapSprites.buttons.speedDown = loadImage("assets/images/buttons/btn3.png");
+
     numberPad.voice.zero = loadSound("assets/sounds/numbersVoice/zero.wav");
     numberPad.voice.one = loadSound("assets/sounds/numbersVoice/one.wav");
     numberPad.voice.two = loadSound("assets/sounds/numbersVoice/two.wav");
@@ -75,6 +106,12 @@ function preload()
     numberPad.voice.correct = loadSound("assets/sounds/numbersVoice/dismissed.wav");
     numberPad.voice.incorrect = loadSound("assets/sounds/numbersVoice/wrong.wav");
     numberPad.voice.on = loadSound("assets/sounds/numbersVoice/active.wav");
+
+    sounds.circus = loadSound("assets/sounds/circus2.mp3");
+    sounds.cringe = loadSound("assets/sounds/cringe.mp3");
+    sounds.up = loadSound("assets/sounds/up.wav");
+    sounds.down = loadSound("assets/sounds/down.wav");
+    sounds.victory = loadSound("assets/sounds/exactVictory2.mp3");
 }
 
 function setup()
@@ -100,6 +137,7 @@ function draw()
     drawButtonPanel();
     drawNumberPad();
     drawValve();
+    drawExact();
 
     isAnyTrapActive = false;
     for (let trap in traps)
@@ -241,6 +279,31 @@ function mousePressed()
         startTimer = millis();
         return false;
     }
+    if (exactEventRunning)
+    {
+        if (exactButtons.oneUp || exactButtons.speedUp) sounds.up.play();
+        else if (exactButtons.oneDown || exactButtons.speedDown) sounds.down.play();
+        
+        if (exactButtons.oneUp)
+            currentValue++;
+        else if (exactButtons.oneDown)
+            currentValue--;
+        else if (exactButtons.speedUp)
+            currentValue += 10;
+        else if (exactButtons.speedDown)
+            currentValue -= 10;
+
+        if (currentValue < 0) currentValue = 0;
+        if (currentValue > 99) currentValue = 99;
+        if (exactButtons.main)
+        {
+            isMousePressed = true;
+            checkExactButtonPress();
+            return false;
+        }
+
+    }
+
 
     // Check if clicking on numberPad
     if (numberPadEventRunning)
