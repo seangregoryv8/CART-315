@@ -26,8 +26,8 @@ let buttonOffset =  { x: 65, y: 100 };
 let sideColours = [];
 let isMouseOverButton = false;
 let isMousePressed = false;
-let buttonCenterX = WIDTH / 3 * 2 + (buttonOffset.x * 3);
-let buttonCenterY = HEIGHT / 2 + (buttonOffset.y * 3);
+let buttonCenterX = WIDTH / 3 * 2 + (SQUARE / 2);
+let buttonCenterY = HEIGHT / 2 + (SQUARE / 2);
 let buttonSize = 400;
 let lastSecondPlayed = -1;
 let timerFinished = false;
@@ -128,15 +128,19 @@ function drawButtonPanel()
     }
     
     // Reset timer finished flag when new game starts
-    if (timeLeft > 0) {
-        timerFinished = false;
-    }
+    if (timeLeft > 0) timerFinished = false;
     
-    translate(WIDTH / 3 * 2, HEIGHT / 2)
+    translate(buttonCenterX, buttonCenterY)
+
+    rectMode(CENTER);
     fill(0);
+    rect(0, 125, 200, 100, 40);
+
+    fill(255);
     textSize(80);
     textFont(vhsFont)
-    text(Math.ceil(timeLeft), buttonOffset.x * 2.25, buttonOffset.y + 30);
+    textAlign(CENTER, CENTER);
+    text(Math.ceil(timeLeft), 0, 125);
 
     scale(3);
     imageMode(CENTER);
@@ -145,7 +149,7 @@ function drawButtonPanel()
     isMouseOverButton = distance < (buttonSize / 4);
     
     noSmooth();
-    image(isMouseOverButton && isMousePressed ? button.pressed : isAnyTrapActive ? button.dead : button.idle, buttonOffset.x, buttonOffset.y);
+    image(isMouseOverButton && isMousePressed ? button.pressed : isAnyTrapActive ? button.dead : button.idle, 0, 0);
     pop();
 }
 
