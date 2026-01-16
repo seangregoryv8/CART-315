@@ -167,7 +167,7 @@ function mouseReleased()
     for (let key in numberPad.pressed)
         numberPad.pressed[key] = false;
     numberPad.pressed.idle = true;
-    lastButtonPressed = IdleDeadline;
+    lastButtonPressed ="idle";
 }
 
 function mousePressed()
@@ -186,8 +186,7 @@ function mousePressed()
     {
         numberPad.pressed[buttonClicked] = true;
         lastButtonPressed = buttonClicked;
-        sounds.press.play();
-        console.log("Number pad button clicked: " + buttonClicked);
+        //sounds.press.play();
         return false;
     }
 }

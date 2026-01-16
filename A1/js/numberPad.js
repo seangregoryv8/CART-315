@@ -65,12 +65,53 @@ function drawNumberPad()
     imageMode(CENTER);
     scale(3);
     
-    console.log(lastButtonPressed)
-    // Display sprite based on last button pressed, or idle if none
     let spriteToShow = numberPad.sprites.idle;
-    if (lastButtonPressed && numberPad.sprites[lastButtonPressed]) {
+
+    if (!numberPadEventRunning) spriteToShow = numberPad.sprites.dead;
+    else if (lastButtonPressed && numberPad.sprites[lastButtonPressed])
         spriteToShow = numberPad.sprites[lastButtonPressed];
-    }
     image(spriteToShow, 0, 0);
     pop();
+
+    if (numberPadEventRunning) console.log(numberPadNumber)
 }
+
+let numberPadEntry = -1;
+function solveNumberPad(number)
+{
+    if (numberPadEntry === -1) numberPadEntry = number;
+    else
+    {
+        numberPadEntry = Number(String(numberPadEntry) + String(number));
+    }
+}
+
+let numberPadEventTimeout = null;
+let numberPadEventRunning = false;
+let numberPadNumber = 0;
+function scheduleNumberPadTrap()
+{
+    let delay = ranInt(5000, 15000);
+    numberPadEventTimeout = setTimeout(() => {
+        if (!numberPadEventRunning)
+        {
+            numberPadNumber = ranInt(10000, 99999);
+            numberPadStartEvent();
+        }
+    }, delay);
+}
+
+function numberPadStartEvent()
+{
+    numberPadEventRunning = true;
+    traps.numberPad = true;
+}
+
+function numberPadEndEvent()
+{
+    numberPadEventRunning = false;
+    traps.numberPad = false;
+    scheduleNumberPadTrap();
+}
+
+scheduleNumberPadTrap();

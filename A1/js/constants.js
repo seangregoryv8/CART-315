@@ -24,9 +24,9 @@ let colours = [
 
 function ranInt(min, max)
 {
-    return Math.round(random(min, max))
+    return Math.floor(Math.random() * (max - min)) + min;
 }
 
-let timerLength = 20;
+let timerLength = 60;
 let startTimer;
 let timeLeft;
