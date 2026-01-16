@@ -5,7 +5,8 @@ let HEIGHT = 800;
 let SQUARE = 400;
 
 let traps = {
-    numberPad: false
+    numberPad: false,
+    valve: false
 }
 
 let button = {
