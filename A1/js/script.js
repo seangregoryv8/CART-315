@@ -56,6 +56,20 @@ function preload()
     numberPad.sprites.zero = loadImage("assets/images/numberPad/np10.png");
     numberPad.sprites.enter = loadImage("assets/images/numberPad/np11.png");
     numberPad.sprites.dead = loadImage("assets/images/numberPad/np12.png");
+
+    numberPad.voice.zero = loadSound("assets/sounds/numbersVoice/zero.wav");
+    numberPad.voice.one = loadSound("assets/sounds/numbersVoice/one.wav");
+    numberPad.voice.two = loadSound("assets/sounds/numbersVoice/two.wav");
+    numberPad.voice.three = loadSound("assets/sounds/numbersVoice/three.wav");
+    numberPad.voice.four = loadSound("assets/sounds/numbersVoice/four.wav");
+    numberPad.voice.five = loadSound("assets/sounds/numbersVoice/five.wav");
+    numberPad.voice.six = loadSound("assets/sounds/numbersVoice/six.wav");
+    numberPad.voice.seven = loadSound("assets/sounds/numbersVoice/seven.wav");
+    numberPad.voice.eight = loadSound("assets/sounds/numbersVoice/eight.wav");
+    numberPad.voice.nine = loadSound("assets/sounds/numbersVoice/nine.wav");
+    numberPad.voice.correct = loadSound("assets/sounds/numbersVoice/dismissed.wav");
+    numberPad.voice.incorrect = loadSound("assets/sounds/numbersVoice/wrong.wav");
+    numberPad.voice.on = loadSound("assets/sounds/numbersVoice/active.wav");
 }
 
 function setup()
@@ -81,9 +95,10 @@ function draw()
     drawButtonPanel();
     drawNumberPad();
 
+    isAnyTrapActive = false;
     for (let trap in traps)
     {
-        if (trap == true) isAnyTrapActive = true;
+        if (traps[trap] == true) isAnyTrapActive = true;
     }
 }
 
@@ -160,12 +175,47 @@ function keyPressed()
     }
 }
 
+function stringToNumber(numStr)
+{
+    switch (numStr)
+    {
+        case "zero": return 0;
+        case "one": return 1;
+        case "two": return 2;
+        case "three": return 3;
+        case "four": return 4;
+        case "five": return 5;
+        case "six": return 6;
+        case "seven": return 7;
+        case "eight": return 8;
+        case "nine": return 9;
+    }
+}
+
 function mouseReleased()
 {
     isMousePressed = false;
     // Reset all numberPad pressed states
-    for (let key in numberPad.pressed)
-        numberPad.pressed[key] = false;
+    if (numberPadEventRunning)
+    {
+        for (let key in numberPad.pressed)
+        {
+            if (numberPad.pressed[key])
+            {
+                let num = null;
+                if (key != "idle" && key != "enter")
+                {
+                    num = stringToNumber(key);
+                    solveNumberPad(num);
+                }
+                else if (key == "enter")
+                {
+                    checkNumberPadSolution();
+                }
+            }
+            numberPad.pressed[key] = false;
+        }
+    }
     numberPad.pressed.idle = true;
     lastButtonPressed ="idle";
 }
@@ -179,14 +229,17 @@ function mousePressed()
         startTimer = millis();
         return false;
     }
-    
+
     // Check if clicking on numberPad
-    let buttonClicked = numberPad.getButtonAtMouse();
-    if (buttonClicked)
+    if (numberPadEventRunning)
     {
-        numberPad.pressed[buttonClicked] = true;
-        lastButtonPressed = buttonClicked;
-        //sounds.press.play();
-        return false;
+        let buttonClicked = numberPad.getButtonAtMouse();
+        if (buttonClicked)
+        {
+            numberPad.pressed[buttonClicked] = true;
+            lastButtonPressed = buttonClicked;
+            //sounds.press.play();
+            return false;
+        }
     }
 }

@@ -45,16 +45,35 @@ let numberPad = {
         enter: { x: NPOX + 90 , y: NPOY - 30 }
     },
     buttonSize: 80,
-    getButtonAtMouse: function() {
+    getButtonAtMouse: function()
+    {
         for (let key in this.centre)
         {
             let dist_val = dist(mouseX, mouseY, this.centre[key].x, this.centre[key].y);
-            if (dist_val < this.buttonSize / 2) {
+            if (dist_val < this.buttonSize / 2)
+            {
+                if (key != "enter") numberPad.voice[key].play();
                 return key;
             }
         }
         return null;
     },
+    voice:
+    {
+        zero: null,
+        one: null,
+        two: null,
+        three: null,
+        four: null,
+        five: null,
+        six: null,
+        seven: null,
+        eight: null,
+        nine: null,
+        correct: null,
+        on: null,
+        incorrect: null
+    }
 };
 
 function drawNumberPad()
@@ -71,9 +90,34 @@ function drawNumberPad()
     else if (lastButtonPressed && numberPad.sprites[lastButtonPressed])
         spriteToShow = numberPad.sprites[lastButtonPressed];
     image(spriteToShow, 0, 0);
+
+    if (numberPadEventRunning)
+    {
+        rectMode(CENTER);
+        rect(0, -50, 130, 20);
+        textAlign(CENTER, CENTER);
+        textFont(vhsFont);
+        fill(255, 0, 0);
+        textSize(20);
+        text(numberPadNumber, 0, -50)
+    }
+
+
     pop();
 
     if (numberPadEventRunning) console.log(numberPadNumber)
+}
+
+function checkNumberPadSolution()
+{
+    if (numberPadEntry === numberPadNumber)
+    {
+        numberPad.voice.correct.play();
+        console.log("Number pad solved!");
+        numberPadEndEvent();
+    }
+    else numberPad.voice.incorrect.play();
+    numberPadEntry = -1;
 }
 
 let numberPadEntry = -1;
@@ -84,6 +128,7 @@ function solveNumberPad(number)
     {
         numberPadEntry = Number(String(numberPadEntry) + String(number));
     }
+    console.log("Current number pad entry: " + numberPadEntry);
 }
 
 let numberPadEventTimeout = null;
@@ -96,6 +141,7 @@ function scheduleNumberPadTrap()
         if (!numberPadEventRunning)
         {
             numberPadNumber = ranInt(10000, 99999);
+            numberPad.voice.on.play();
             numberPadStartEvent();
         }
     }, delay);
