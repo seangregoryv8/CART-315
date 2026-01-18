@@ -113,6 +113,10 @@ function resetGame()
     isMouseOverButton = false;
 
     recordedTime = 0;
+
+    exactEndEvent();
+    numberPadEndEvent();
+    valveEndEvent();
 }
 
 function preload()
