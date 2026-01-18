@@ -305,6 +305,13 @@ function drawButtonPanel()
         numberPad.voice.correct.stop(),
         numberPad.voice.on.stop(),
         numberPad.voice.incorrect.stop()
+
+        sounds.cardFinish.stop();
+        sounds.cardGrab.stop();
+        sounds.cardRight.stop();
+        sounds.cardWrong.stop();
+        sounds.cardStart.stop();
+
     }
     
     if (startFlash)
