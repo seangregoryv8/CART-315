@@ -10,7 +10,7 @@ let deckTrap = {
 
 let deadCard = "";
 
-let types = ["heart", "spade", "hourglass", "square", "circle", "plus", "snowflake", "fish"];
+let types = ["heart", "spade", "hourglass", "square", "circle", "plus", "snowflake", "fish", "amogus"];
 function loadCards()
 {
     deadCard = loadImage("assets/images/cards/card0.png");
@@ -19,11 +19,14 @@ function loadCards()
 
     for (let i = 0; i <= types.length - 1; i++)
     {
+        if (i + 1 != 5)
+        {
         let img = loadImage("assets/images/cards/card" + (i + 1) + ".png");
         let cardType = types[i];
         for (let j = 0; j < 2; j++)
         {
             deckTrap.cards.push(new MemoryCard(cardType, img, 0, 0));
+        }
         }
     }
     lockCards();
