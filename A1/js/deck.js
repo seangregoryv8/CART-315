@@ -69,13 +69,12 @@ function drawDeck()
     pop();
 }
 
-
 let deckEventTimeout = null;
 let deckEventRunning = false;
 let deckNumber = 0;
 function scheduleDeckTrap()
 {
-    let delay = ranInt(5000, 15000);
+    let delay = ranInt(ranInt(3000, 10000), ranInt(10000, 20000));
     deckEventTimeout = setTimeout(() => {
         if (!deckEventRunning)
         {
@@ -102,6 +101,7 @@ function deckEndEvent()
 {
     deckEventRunning = false;
     traps.deck = false;
+    loadCards();
     scheduleDeckTrap();
 }
 

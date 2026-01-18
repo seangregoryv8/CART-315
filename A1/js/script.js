@@ -11,7 +11,8 @@ let flashRed = true;
 let traps = {
     numberPad: false,
     valve: false,
-    exact: false
+    exact: false,
+    deck: false
 }
 
 let button = {
@@ -69,6 +70,8 @@ let buttonSize = 400;
 let lastSecondPlayed = -1;
 let timerFinished = false;
 
+let absoluteStartTimer = 0;
+
 function resetGame()
 {
     // --- Core state ---
@@ -78,6 +81,7 @@ function resetGame()
 
     timerFinished = false;
     lastSecondPlayed = -1;
+    absoluteStartTimer = millis();
     startTimer = millis();
 
     recordTime = millis();
@@ -122,6 +126,7 @@ function resetGame()
     exactEndEvent();
     numberPadEndEvent();
     valveEndEvent();
+    deckEndEvent();
 }
 
 function preload()
@@ -258,7 +263,9 @@ function drawButtonPanel()
     // Detect when timer reaches 0
     if (timeLeft === 0 && !timerFinished && !endFlash)
     {
-        recordedTime = recordTime;
+        console.log(absoluteStartTimer)
+        console.log(millis() - absoluteStartTimer)
+        recordedTime = Math.round((millis() - absoluteStartTimer) / 1000);
         timerFinished = true;
         if (sounds.explode)
         {
