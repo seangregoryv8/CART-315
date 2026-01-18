@@ -55,7 +55,8 @@ let sounds = {
     cardGrab: "",
     cardRight: "",
     cardStart: "",
-    cardWrong: ""
+    cardWrong: "",
+    music: ""
 }
 
 let vhsFont = "";
@@ -127,6 +128,7 @@ function resetGame()
     numberPadEndEvent();
     valveEndEvent();
     deckEndEvent();
+    sounds.music.play();
 }
 
 function preload()
@@ -202,6 +204,8 @@ function preload()
     sounds.cardWrong = loadSound("assets/sounds/cardWrong.mp3");
     sounds.cardStart = loadSound("assets/sounds/cardStart.mp3");
 
+    sounds.music = loadSound("assets/sounds/music2.mp3")
+
     loadCards();
 }
 
@@ -221,6 +225,9 @@ function setup()
 
     startTimer = millis();
     recordTime = millis();
+
+    sounds.music.play();
+    sounds.music.loop();
 }
 
 function draw()
@@ -318,7 +325,7 @@ function drawButtonPanel()
         sounds.cardRight.stop();
         sounds.cardWrong.stop();
         sounds.cardStart.stop();
-
+        sounds.music.stop();
     }
     
     if (startFlash)
