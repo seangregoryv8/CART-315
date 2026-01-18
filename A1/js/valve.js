@@ -104,7 +104,7 @@ function checkValveHover()
 
 function valveMousePressed()
 {
-    if (checkValveHover())
+    if (checkValveHover() && valveEventRunning)
     {
         isDraggingValve = true;
         totalValveTurn = 0;
@@ -187,6 +187,7 @@ function valveEndEvent()
 {
     sounds.steam.stop();
     sounds.turn.stop();
+    sounds.crankDone.play();
     valveEventRunning = false;
     traps.valve = false;
     scheduleValveTrap();

@@ -69,7 +69,6 @@ function scheduleExactTrap()
         {
             desiredValue = ranInt(1, 99);
             sounds.circus.play();
-            sounds.circus.setLoop(true);
             exactStartEvent();
         }
     }, delay);
@@ -82,7 +81,11 @@ function checkExactButtonPress()
         exactEndEvent();
         sounds.victory.play();
     }
-    else sounds.cringe.play();
+    else
+    {
+        sounds.cringe.play();
+        timeLeft -= 5;
+    }
     currentValue = 0;
 }
 

@@ -4,6 +4,10 @@ let WIDTH = 1200;
 let HEIGHT = 800;
 let SQUARE = 400;
 
+let startFlash = false;
+let endFlash = false;
+let flashRed = true;
+
 let traps = {
     numberPad: false,
     valve: false,
@@ -43,7 +47,9 @@ let sounds = {
     cringe: "",
     up: "",
     down: "",
-    victory: ""
+    victory: "",
+    crankDone: "",
+    gameOver: []
 }
 
 let vhsFont = "";
@@ -57,6 +63,57 @@ let buttonCenterY = HEIGHT / 2 + (SQUARE / 2);
 let buttonSize = 400;
 let lastSecondPlayed = -1;
 let timerFinished = false;
+
+function resetGame()
+{
+    // --- Core state ---
+    startFlash = false;
+    endFlash = false;
+    flashRed = true;
+
+    timerFinished = false;
+    lastSecondPlayed = -1;
+    startTimer = millis();
+
+    recordTime = millis();
+
+    // --- Traps ---
+    for (let trap in traps)
+        traps[trap] = false;
+
+    isAnyTrapActive = false;
+
+    // --- Colours ---
+    let shuffled = [...colours];
+    for (let i = shuffled.length - 1; i > 0; i--)
+    {
+        let j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    sideColours = shuffled.slice(0, 6);
+
+    // --- Stop timers / events ---
+    clearTimeout(numberPadEventTimeout);
+    clearTimeout(exactEventTimeout);
+    clearTimeout(valveEventTimeout);
+
+    // --- Stop all sounds ---
+    for (let key in sounds)
+    {
+        if (Array.isArray(sounds[key]))
+            sounds[key].forEach(s => s.stop());
+        else if (sounds[key]) sounds[key].stop();
+    }
+
+    for (let v in numberPad.voice)
+        numberPad.voice[v].stop();
+
+    // --- Reset input ---
+    isMousePressed = false;
+    isMouseOverButton = false;
+
+    recordedTime = 0;
+}
 
 function preload()
 {
@@ -107,11 +164,23 @@ function preload()
     numberPad.voice.incorrect = loadSound("assets/sounds/numbersVoice/wrong.wav");
     numberPad.voice.on = loadSound("assets/sounds/numbersVoice/active.wav");
 
-    sounds.circus = loadSound("assets/sounds/circus2.mp3");
+    sounds.circus = loadSound("assets/sounds/circus.mp3");
     sounds.cringe = loadSound("assets/sounds/cringe.mp3");
     sounds.up = loadSound("assets/sounds/up.wav");
     sounds.down = loadSound("assets/sounds/down.wav");
     sounds.victory = loadSound("assets/sounds/exactVictory2.mp3");
+    sounds.crankDone = loadSound("assets/sounds/crankDone.mp3");
+    
+    sounds.gameOver.push(loadSound("assets/sounds/gameOver/1.wav"))
+    sounds.gameOver.push(loadSound("assets/sounds/gameOver/2.wav"))
+    sounds.gameOver.push(loadSound("assets/sounds/gameOver/3.wav"))
+    sounds.gameOver.push(loadSound("assets/sounds/gameOver/4.wav"))
+    sounds.gameOver.push(loadSound("assets/sounds/gameOver/5.wav"))
+    sounds.gameOver.push(loadSound("assets/sounds/gameOver/6.wav"))
+    sounds.gameOver.push(loadSound("assets/sounds/gameOver/7.wav"))
+    sounds.gameOver.push(loadSound("assets/sounds/gameOver/8.wav"))
+    sounds.gameOver.push(loadSound("assets/sounds/gameOver/9.wav"))
+    sounds.gameOver.push(loadSound("assets/sounds/gameOver/10.wav"))
 }
 
 function setup()
@@ -129,15 +198,18 @@ function setup()
     sideColours = shuffled.slice(0, 6);
 
     startTimer = millis();
+    recordTime = millis();
 }
 
 function draw()
 {
+    if (endFlash) 
+        sideColours = ["#000000", "#000000", "#000000", "#000000", "#000000", "#000000"];
     drawGrid();
     drawButtonPanel();
-    drawNumberPad();
-    drawValve();
-    drawExact();
+    if (!timerFinished) drawNumberPad();
+    if (!timerFinished) drawValve();
+    if (!timerFinished) drawExact();
 
     isAnyTrapActive = false;
     for (let trap in traps)
@@ -166,11 +238,62 @@ function drawButtonPanel()
     }
     
     // Detect when timer reaches 0
-    if (timeLeft === 0 && !timerFinished) {
+    if (timeLeft === 0 && !timerFinished && !endFlash)
+    {
+        recordedTime = recordTime;
         timerFinished = true;
-        if (sounds.explode) sounds.explode.play();
+        if (sounds.explode)
+        {
+            setTimeout(() => {
+                startFlash = true;
+                sounds.explode.play();
+                setTimeout(() => {
+                    startFlash = false;
+                    endFlash = true;
+                }, 1200);
+            }, 4000);
+            setTimeout(() => sounds.gameOver[ranInt(0, 9)].play(), 2000);
+        }
+        clearTimeout(numberPadEventTimeout);
+        clearTimeout(exactEventTimeout);
+        clearTimeout(valveEventTimeout);
+
+        sideColours = ["#222222", "#222222", "#222222", "#222222", "#222222", "#222222"]
+
+
+        sounds.beep.stop();
+        sounds.press.stop();
+        sounds.explode.stop();
+        sounds.steam.stop();
+        sounds.turn.stop();
+        sounds.circus.stop();
+        sounds.cringe.stop();
+        sounds.up.stop();
+        sounds.down.stop();
+        sounds.victory.stop();
+        sounds.crankDone.stop();
+
+
+        numberPad.voice.zero.stop(),
+        numberPad.voice.one.stop(),
+        numberPad.voice.two.stop(),
+        numberPad.voice.three.stop(),
+        numberPad.voice.four.stop(),
+        numberPad.voice.five.stop(),
+        numberPad.voice.six.stop(),
+        numberPad.voice.seven.stop(),
+        numberPad.voice.eight.stop(),
+        numberPad.voice.nine.stop(),
+        numberPad.voice.correct.stop(),
+        numberPad.voice.on.stop(),
+        numberPad.voice.incorrect.stop()
     }
     
+    if (startFlash)
+    {
+        sideColours = [flashRed ? "#ff0000" : "#222222", flashRed ? "#ff0000" : "#222222", flashRed ? "#ff0000" : "#222222", flashRed ? "#ff0000" : "#222222", flashRed ? "#ff0000" : "#222222", flashRed ? "#ff0000" : "#222222"]
+        flashRed = !flashRed;
+    }
     // Reset timer finished flag when new game starts
     if (timeLeft > 0) timerFinished = false;
     
@@ -179,13 +302,13 @@ function drawButtonPanel()
 
     rectMode(CENTER);
     fill(0);
-    rect(0, 125, 200, 100, 40);
+    if (!endFlash) rect(0, 125, 200, 100, 40);
 
     fill(255);
     textSize(80);
     textFont(vhsFont)
     textAlign(CENTER, CENTER);
-    text(Math.ceil(timeLeft), 0, 125);
+    if (!endFlash) text(Math.ceil(timeLeft), 0, 125);
 
     scale(3);
     imageMode(CENTER);
@@ -194,22 +317,35 @@ function drawButtonPanel()
     isMouseOverButton = distance < (buttonSize / 4);
     
     noSmooth();
-    image(isMouseOverButton && isMousePressed ? button.pressed : isAnyTrapActive ? button.dead : button.idle, 0, 0);
+    if (!endFlash) image(isMouseOverButton && isMousePressed ? button.pressed : isAnyTrapActive ? button.dead : button.idle, 0, 0);
     
     fill(0);
     scale(1);
-    rect(0, -45, 120, 40, 20);
+    if (!timerFinished) rect(0, -45, 120, 40, 20);
     fill(255);
     textSize(6);
-    text("Don't let the count reach 0\nPress the button to reset it\nComplete each game to unlock it", 0, -45);
+    if (!timerFinished) text("Don't let the count reach 0\nPress the button to reset it\nComplete each game to unlock it", 0, -45);
     pop();
+
+    if (endFlash)
+    {
+        push();
+        translate(WIDTH / 2, HEIGHT / 2)
+        textAlign(CENTER, CENTER);
+        textSize(70);
+        textFont(vhsFont)
+        fill(255);
+        text("GAME OVER\nTime elapsed: " + recordedTime + "s\nPress space to reset", 0, 0);
+        pop();
+    }
 }
 
 function drawGrid()
 {
     push();
     stroke(0);
-    strokeWeight(6);
+    if (!endFlash) strokeWeight(6);
+    else noStroke();
     let index = 0;
     for (let i = 0; i < WIDTH / SQUARE; i++)
     {
@@ -225,10 +361,8 @@ function drawGrid()
 
 function keyPressed()
 {
-    if (keyIsPressed && key == "1")
-    {
-        isAnyTrapActive = !isAnyTrapActive;
-    }
+    if (keyIsPressed && key == " " && endFlash)
+        resetGame();
 }
 
 function stringToNumber(numStr)
@@ -280,52 +414,54 @@ function mouseReleased()
 
 function mousePressed()
 {
-    if (isMouseOverButton && !isAnyTrapActive)
+    if (!timerFinished)
     {
-        sounds.press.play();
-        isMousePressed = true;
-        startTimer = millis();
-        return false;
-    }
-    if (exactEventRunning)
-    {
-        if (exactButtons.oneUp || exactButtons.speedUp) sounds.up.play();
-        else if (exactButtons.oneDown || exactButtons.speedDown) sounds.down.play();
-
-        if (exactButtons.oneUp)
-            currentValue++;
-        else if (exactButtons.oneDown)
-            currentValue--;
-        else if (exactButtons.speedUp)
-            currentValue += 10;
-        else if (exactButtons.speedDown)
-            currentValue -= 10;
-
-        if (currentValue < 0) currentValue = 0;
-        if (currentValue > 99) currentValue = 99;
-        if (exactButtons.main)
+        if (isMouseOverButton && !isAnyTrapActive)
         {
+            sounds.press.play();
             isMousePressed = true;
-            checkExactButtonPress();
+            startTimer = millis();
             return false;
         }
-
-    }
-
-
-    // Check if clicking on numberPad
-    if (numberPadEventRunning)
-    {
-        let buttonClicked = numberPad.getButtonAtMouse();
-        if (buttonClicked)
+        if (exactEventRunning)
         {
-            numberPad.pressed[buttonClicked] = true;
-            lastButtonPressed = buttonClicked;
-            //sounds.press.play();
-            return false;
-        }
-    }
+            if (exactButtons.oneUp || exactButtons.speedUp) sounds.up.play();
+            else if (exactButtons.oneDown || exactButtons.speedDown) sounds.down.play();
     
-    // Check if clicking on valve
-    if (valveMousePressed()) return false;
+            if (exactButtons.oneUp)
+                currentValue++;
+            else if (exactButtons.oneDown)
+                currentValue--;
+            else if (exactButtons.speedUp)
+                currentValue += 10;
+            else if (exactButtons.speedDown)
+                currentValue -= 10;
+    
+            if (currentValue < 0) currentValue = 0;
+            if (currentValue > 99) currentValue = 99;
+            if (exactButtons.main)
+            {
+                isMousePressed = true;
+                checkExactButtonPress();
+                return false;
+            }
+    
+        }
+        // Check if clicking on numberPad
+        if (numberPadEventRunning)
+        {
+            let buttonClicked = numberPad.getButtonAtMouse();
+            if (buttonClicked)
+            {
+                numberPad.pressed[buttonClicked] = true;
+                lastButtonPressed = buttonClicked;
+                //sounds.press.play();
+                return false;
+            }
+        }
+        
+        // Check if clicking on valve
+        if (valveMousePressed()) return false;
+    }
+
 }

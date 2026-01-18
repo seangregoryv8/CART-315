@@ -27,6 +27,9 @@ function ranInt(min, max)
     return Math.floor(Math.random() * (max - min)) + min;
 }
 
-let timerLength = 60;
+let timerLength = 45;
 let startTimer;
 let timeLeft;
+
+let recordTime = 0;
+let recordedTime = 0;
