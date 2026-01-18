@@ -49,7 +49,12 @@ let sounds = {
     down: "",
     victory: "",
     crankDone: "",
-    gameOver: []
+    gameOver: [],
+    cardFinish: "",
+    cardGrab: "",
+    cardRight: "",
+    cardStart: "",
+    cardWrong: ""
 }
 
 let vhsFont = "";
@@ -185,6 +190,14 @@ function preload()
     sounds.gameOver.push(loadSound("assets/sounds/gameOver/8.wav"))
     sounds.gameOver.push(loadSound("assets/sounds/gameOver/9.wav"))
     sounds.gameOver.push(loadSound("assets/sounds/gameOver/10.wav"))
+
+    sounds.cardFinish = loadSound("assets/sounds/cardFinish.mp3");
+    sounds.cardGrab = loadSound("assets/sounds/cardGrab.mp3");
+    sounds.cardRight = loadSound("assets/sounds/cardRight.mp3");
+    sounds.cardWrong = loadSound("assets/sounds/cardWrong.mp3");
+    sounds.cardStart = loadSound("assets/sounds/cardStart.mp3");
+
+    loadCards();
 }
 
 function setup()
@@ -214,6 +227,7 @@ function draw()
     if (!timerFinished) drawNumberPad();
     if (!timerFinished) drawValve();
     if (!timerFinished) drawExact();
+    if (!timerFinished) drawDeck();
 
     isAnyTrapActive = false;
     for (let trap in traps)
@@ -466,6 +480,7 @@ function mousePressed()
         
         // Check if clicking on valve
         if (valveMousePressed()) return false;
-    }
 
+        cardTrapClick();
+    }
 }
