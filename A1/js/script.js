@@ -8,6 +8,8 @@ let startFlash = false;
 let endFlash = false;
 let flashRed = true;
 
+let specialDay = false;
+
 let traps = {
     numberPad: false,
     valve: false,
@@ -56,7 +58,8 @@ let sounds = {
     cardRight: "",
     cardStart: "",
     cardWrong: "",
-    music: ""
+    music: "",
+    holidays: ""
 }
 
 let vhsFont = "";
@@ -131,6 +134,17 @@ function resetGame()
     sounds.music.play();
 }
 
+function IsTwerkThursday()
+{
+    let now = new Date();
+
+    return (
+        now.getDay() === 4 && 
+        now.getHours() === 0 && 
+        now.getMinutes() === 0
+    )
+}
+
 function preload()
 {
     button.idle = loadImage("assets/images/buttonIdle.png");
@@ -202,9 +216,10 @@ function preload()
     sounds.cardGrab = loadSound("assets/sounds/cardGrab.mp3");
     sounds.cardRight = loadSound("assets/sounds/cardRight.mp3");
     sounds.cardWrong = loadSound("assets/sounds/cardWrong.mp3");
-    sounds.cardStart = loadSound("assets/sounds/cardStart.mp3");
+    sounds.cardStart = loadSound("assets/sounds/cardStart2.mp3");
 
     sounds.music = loadSound("assets/sounds/music2.mp3")
+    sounds.holidays = loadSound("assets/sounds/happyHolidays.mp3");
 
     loadCards();
 }
@@ -246,8 +261,20 @@ function draw()
     {
         if (traps[trap] == true) isAnyTrapActive = true;
     }
+
+    if (IsTwerkThursday() && !specialDay)
+    {
+        specialDay = true;
+        triggerAmongUsTwerkThursday();
+    }
 }
 
+function triggerAmongUsTwerkThursday()
+{
+    sounds.music.stop();
+    sounds.holidays.play();
+    
+}
 let isAnyTrapActive = false;
 function drawButtonPanel()
 {
@@ -270,8 +297,6 @@ function drawButtonPanel()
     // Detect when timer reaches 0
     if (timeLeft === 0 && !timerFinished && !endFlash)
     {
-        console.log(absoluteStartTimer)
-        console.log(millis() - absoluteStartTimer)
         recordedTime = Math.round((millis() - absoluteStartTimer) / 1000);
         timerFinished = true;
         if (sounds.explode)
@@ -289,6 +314,7 @@ function drawButtonPanel()
         clearTimeout(numberPadEventTimeout);
         clearTimeout(exactEventTimeout);
         clearTimeout(valveEventTimeout);
+        clearTimeout(deckEventTimeout);
 
         sideColours = ["#222222", "#222222", "#222222", "#222222", "#222222", "#222222"]
 

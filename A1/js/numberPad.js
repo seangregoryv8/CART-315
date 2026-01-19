@@ -104,8 +104,6 @@ function drawNumberPad()
 
 
     pop();
-
-    if (numberPadEventRunning) console.log(numberPadNumber)
 }
 
 function checkNumberPadSolution()
@@ -113,7 +111,6 @@ function checkNumberPadSolution()
     if (numberPadEntry === numberPadNumber)
     {
         numberPad.voice.correct.play();
-        console.log("Number pad solved!");
         numberPadEndEvent();
     }
     else numberPad.voice.incorrect.play();

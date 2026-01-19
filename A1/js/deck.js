@@ -83,7 +83,6 @@ function scheduleDeckTrap()
         {
             for (let card of deckTrap.cards)
             {
-                sounds.cardStart.volume = 0.6;
                 sounds.cardStart.play();
                 card.matched = false;
                 card.faceUp = true;
