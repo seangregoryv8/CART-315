@@ -145,8 +145,13 @@ function IsTwerkThursday()
     )
 }
 
+let celebrationGif = "";
+let twerkGif = "";
+
 function preload()
 {
+    celebrationGif = loadImage("assets/images/holiday.gif");
+    twerkGif = loadImage("assets/images/amogusTwerk.gif");
     button.idle = loadImage("assets/images/buttonIdle.png");
     button.pressed = loadImage("assets/images/buttonPressed.png");
     button.dead = loadImage("assets/images/buttonDead.png");
@@ -245,12 +250,121 @@ function setup()
     sounds.music.loop();
 }
 
+let celebrationBegan = false;
+let celebrationStartTime = 0;
+let celebrationAlpha = 0; // 0..255
+let celebrationPreFadeDelay = 30000; // ms before fade starts
+let celebrationFadeDuration = 2000; // ms to fully fade in
+let celebrationColourInterval = 500; // ms between colour switches
+let lastCelebrationColourSwitch = 0;
+let celebrationColourState = false;
+let celebrationColours = ["#ff0000", "#00cc00"];
+
+function propLights()
+{
+    push();
+    translate(-SQUARE / 2, -(HEIGHT / 2) + -(SQUARE / 2))
+    // alternating coloured overlay
+    let now = millis();
+    if (now - lastCelebrationColourSwitch > celebrationColourInterval) {
+        celebrationColourState = !celebrationColourState;
+        lastCelebrationColourSwitch = now;
+    }
+    let col = color(celebrationColours[celebrationColourState ? 1 : 0]);
+    col.setAlpha(80);
+    noStroke();
+    fill(col);
+    rect(0, 0, SQUARE, SQUARE);
+    rect(WIDTH / 3 * 2, 0, SQUARE, SQUARE);
+    rect(WIDTH / 3, HEIGHT / 2, SQUARE, SQUARE);
+    col = color(celebrationColours[celebrationColourState ? 0 : 1]);
+    fill(col);
+    col.setAlpha(80);
+    noStroke();
+    rect(WIDTH / 3, 0, SQUARE, SQUARE);
+    rect(0, HEIGHT / 2, SQUARE, SQUARE);
+    rect(WIDTH / 3 * 2, HEIGHT / 2, SQUARE, SQUARE);
+    pop();
+}
+
+let startFadeIn = false;
+function drawAUTT()
+{
+    push();
+    translate(SQUARE / 2, (HEIGHT / 2) + (SQUARE / 2))
+    if (celebrationBegan)
+    {
+        propLights();
+        imageMode(CENTER);
+        // calculate fade alpha based on elapsed since celebration start
+        let t = millis() - celebrationStartTime;
+        let timeAfterDelay = t - celebrationPreFadeDelay;
+        
+        // Only start fading after the pre-fade delay expires
+        if (timeAfterDelay > 0) {
+            celebrationAlpha = Math.min(255, Math.round(255 * (timeAfterDelay / celebrationFadeDuration)));
+        } else {
+            celebrationAlpha = 0;
+        }
+
+
+        push();
+        translate(-200, -200)
+        tint(255, celebrationAlpha);
+        for (let i = 0; i <= WIDTH; i += 50)
+        {
+            image(twerkGif, i, 0)
+        }
+        translate(WIDTH / 3, -HEIGHT / 2)
+        for (let i = 0; i <= HEIGHT; i += 50)
+        {
+            image(twerkGif, 0, i)
+            image(twerkGif, WIDTH / 3, i)
+        }
+        pop();
+        // draw gif with tint for fade-in
+
+        push();
+        tint(255, celebrationAlpha);
+        image(celebrationGif, 0, 0);
+        image(celebrationGif, 0, -HEIGHT / 2);
+        translate(WIDTH / 3, 0);
+        image(celebrationGif, 0, 0);
+        image(celebrationGif, 0, -HEIGHT / 2);
+        translate(WIDTH / 3, 0);
+        image(celebrationGif, 0, 0);
+        image(celebrationGif, 0, -HEIGHT / 2);
+
+        pop();
+    }
+
+    else
+    {
+        rectMode(CENTER, CENTER);
+        fill(100);
+        stroke(255);
+        strokeWeight(6);
+        rect(0, 0, 300, 50, 7)
+        textAlign(CENTER, CENTER);
+        textSize(18);
+        noStroke();
+        fill(0);
+        text("Click here to begin the celebration", 0, 0)
+    }
+    pop();
+
+    sounds.holidays.onended(endHoliday)
+}
+function endHoliday()
+{
+    specialDay = false;
+}
 function draw()
 {
     if (endFlash) 
         sideColours = ["#000000", "#000000", "#000000", "#000000", "#000000", "#000000"];
     drawGrid();
-    drawButtonPanel();
+    if (!specialDay) drawButtonPanel();
     if (!timerFinished) drawNumberPad();
     if (!timerFinished) drawValve();
     if (!timerFinished) drawExact();
@@ -265,20 +379,62 @@ function draw()
     if (IsTwerkThursday() && !specialDay)
     {
         specialDay = true;
+        stopEverything();
         triggerAmongUsTwerkThursday();
     }
+
+    if (specialDay) drawAUTT();
 }
 
 function triggerAmongUsTwerkThursday()
 {
     sounds.music.stop();
-    sounds.holidays.play();
-    
 }
+
+function stopEverything()
+{
+    clearTimeout(numberPadEventTimeout);
+    clearTimeout(exactEventTimeout);
+    clearTimeout(valveEventTimeout);
+    clearTimeout(deckEventTimeout);
+    sideColours = ["#222222", "#222222", "#222222", "#222222", "#222222", "#222222"]
+    sounds.beep.stop();
+    sounds.press.stop();
+    sounds.explode.stop();
+    sounds.steam.stop();
+    sounds.turn.stop();
+    sounds.circus.stop();
+    sounds.cringe.stop();
+    sounds.up.stop();
+    sounds.down.stop();
+    sounds.victory.stop();
+    sounds.crankDone.stop();
+    numberPad.voice.zero.stop(),
+    numberPad.voice.one.stop(),
+    numberPad.voice.two.stop(),
+    numberPad.voice.three.stop(),
+    numberPad.voice.four.stop(),
+    numberPad.voice.five.stop(),
+    numberPad.voice.six.stop(),
+    numberPad.voice.seven.stop(),
+    numberPad.voice.eight.stop(),
+    numberPad.voice.nine.stop(),
+    numberPad.voice.correct.stop(),
+    numberPad.voice.on.stop(),
+    numberPad.voice.incorrect.stop()
+    sounds.cardFinish.stop();
+    sounds.cardGrab.stop();
+    sounds.cardRight.stop();
+    sounds.cardWrong.stop();
+    sounds.cardStart.stop();
+    sounds.music.stop();
+}
+
 let isAnyTrapActive = false;
 function drawButtonPanel()
 {
     let elapsed = (millis() - startTimer) / 1000;
+    if (specialDay) elapsed = 45;
     timeLeft = max(0, timerLength - elapsed);
     
     // Detect when timer ticks (each second)
@@ -291,7 +447,6 @@ function drawButtonPanel()
             if (currentSecond % 5 === 0 && currentSecond != timerLength) sounds.beep.play();
         }
         else if (sounds.beep) sounds.beep.play();
-
     }
     
     // Detect when timer reaches 0
@@ -311,47 +466,7 @@ function drawButtonPanel()
             }, 4000);
             setTimeout(() => sounds.gameOver[ranInt(0, 9)].play(), 2000);
         }
-        clearTimeout(numberPadEventTimeout);
-        clearTimeout(exactEventTimeout);
-        clearTimeout(valveEventTimeout);
-        clearTimeout(deckEventTimeout);
-
-        sideColours = ["#222222", "#222222", "#222222", "#222222", "#222222", "#222222"]
-
-
-        sounds.beep.stop();
-        sounds.press.stop();
-        sounds.explode.stop();
-        sounds.steam.stop();
-        sounds.turn.stop();
-        sounds.circus.stop();
-        sounds.cringe.stop();
-        sounds.up.stop();
-        sounds.down.stop();
-        sounds.victory.stop();
-        sounds.crankDone.stop();
-
-
-        numberPad.voice.zero.stop(),
-        numberPad.voice.one.stop(),
-        numberPad.voice.two.stop(),
-        numberPad.voice.three.stop(),
-        numberPad.voice.four.stop(),
-        numberPad.voice.five.stop(),
-        numberPad.voice.six.stop(),
-        numberPad.voice.seven.stop(),
-        numberPad.voice.eight.stop(),
-        numberPad.voice.nine.stop(),
-        numberPad.voice.correct.stop(),
-        numberPad.voice.on.stop(),
-        numberPad.voice.incorrect.stop()
-
-        sounds.cardFinish.stop();
-        sounds.cardGrab.stop();
-        sounds.cardRight.stop();
-        sounds.cardWrong.stop();
-        sounds.cardStart.stop();
-        sounds.music.stop();
+        stopEverything();
     }
     
     if (startFlash)
@@ -479,6 +594,24 @@ function mouseReleased()
 
 function mousePressed()
 {
+    // If the AUTT (celebration) screen is showing, detect clicks on the "Click here" rect
+    if (specialDay)
+    {
+        let auttX = SQUARE / 2;
+        let auttY = (HEIGHT / 2) + (SQUARE / 2);
+        let auttW = 300;
+        let auttH = 50;
+        if (mouseX >= auttX - auttW/2 && mouseX <= auttX + auttW/2 && mouseY >= auttY - auttH/2 && mouseY <= auttY + auttH/2)
+        {
+            sounds.holidays.play();
+            celebrationBegan = true;
+            celebrationStartTime = millis();
+            celebrationAlpha = 0;
+            lastCelebrationColourSwitch = millis();
+            celebrationColourState = false;
+            return false;
+        }
+    }
     if (!timerFinished)
     {
         if (isMouseOverButton && !isAnyTrapActive)
