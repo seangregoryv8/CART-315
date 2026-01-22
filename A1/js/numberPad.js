@@ -128,7 +128,7 @@ let numberPadEventRunning = false;
 let numberPadNumber = 0;
 function scheduleNumberPadTrap()
 {
-    let delay = ranInt(ranInt(3000, 10000), ranInt(10000, 20000));
+    let delay = ranInt(ranInt(5000, 15000), ranInt(15000, 25000));
     numberPadEventTimeout = setTimeout(() => {
         if (!numberPadEventRunning)
         {

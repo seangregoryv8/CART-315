@@ -77,7 +77,7 @@ let deckEventRunning = false;
 let deckNumber = 0;
 function scheduleDeckTrap()
 {
-    let delay = ranInt(ranInt(3000, 10000), ranInt(10000, 20000));
+    let delay = ranInt(ranInt(5000, 15000), ranInt(15000, 25000));
     deckEventTimeout = setTimeout(() => {
         if (!deckEventRunning)
         {

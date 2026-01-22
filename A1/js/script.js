@@ -384,6 +384,21 @@ function draw()
     }
 
     if (specialDay) drawAUTT();
+
+    else
+    {
+        push();
+        translate(SQUARE / 2, HEIGHT / 2 + (SQUARE / 2))
+        textAlign(CENTER, CENTER)
+        textSize(14)
+        rectMode(CENTER);
+        noStroke();
+        fill(0);
+        rect(0, 0, SQUARE - 50, SQUARE - 50, 100);
+        fill(255);
+        text("DON'T LET THE TIMER REACH 0\nPress the button to reset it\nDisable all traps to press it\n\nTop left: Match all cards to disable\nTop middle: Match left number to right number\nBottom middle: Enter number above\nTop right: Twist valve with mouse to desired rotation", 0, 0);
+        pop();
+    }
 }
 
 function triggerAmongUsTwerkThursday()
