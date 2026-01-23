@@ -1,5 +1,7 @@
 # Week 1 - January 22, 2026
 
+![alt text](image-1.png)
+
 ## Make a Thing - KEEP PLAYING AND NOBODY EXPLODES
 
 In this game, you have one simple goal: prevent the timer from reaching 0. If you do, the bomb explodes and it's game over.
