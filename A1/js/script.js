@@ -385,7 +385,7 @@ function draw()
 
     if (specialDay) drawAUTT();
 
-    else
+    else if (!timerFinished)
     {
         push();
         translate(SQUARE / 2, HEIGHT / 2 + (SQUARE / 2))
