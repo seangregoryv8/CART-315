@@ -90,3 +90,15 @@ To be honest, this was taking a lot of space in my head, and I really wanted to 
 # Week 2 - January 29, 2026
 
 ![alt text](image.png)
+
+## Goofing around in Unity
+
+For this week, I mostly messed around in Unity, checking out some various tutorials, notably checking out a game made by a friend of mine.
+
+Unity had a built-in tutorial that I followed to the best of my abilities, quickly getting the hang of some various portions (when it decided to actually work).
+
+First thing in Unity was a character that already moved, so we got familiar with character movement and creation, alongside speed change, and interactivity with certain objects in the map. All these were adjustible.
+
+Next tutorial was asset management, taking certain assets and transferring them to empty scenes, understanding object sizing. We were told to make a new object, in this case a ball, and modified its colliding sturctures (with a ramp) and bounciness with certain values, understanding how to create values in unity ourselves (changing colour, metallic, roughness, etc)
+
+Finally, the third tutorial was audio related/foley, how to add objects, make it loop, send objects towards them, and the centralized portions just with audio.
