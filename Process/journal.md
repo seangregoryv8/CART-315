@@ -174,9 +174,8 @@ If anything, this reminded me that prototyping is less about building something 
 
 # Week 6 - February 26, 2026
 
-## 
-
-Design Journal: Iterative Prototyping 1 (Conceptualizing) - Journal about your ideation process. Include any Design Values, Precedents, and your 3 favourite ideas. These don't have to be very detailed, just a few sentences to capture the main game concept. Build out simple prototype to test one of the ideas. This can be a role, look/feel, or implementation prototype (Remember that this doesn't have to be digital!)
+## 3 Favourite Game Prototype Ideas from Last class
+![alt text](image-7.png)
 
 ### Idea #1: Inscryption meets Dark Souls
 
