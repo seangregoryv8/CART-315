@@ -217,6 +217,13 @@ https://github.com/neonbjb/tortoise-tts
 
 We decided to try out TorToiSe-TTS, alongside Ollama, which can generate and say out things. We could've gone with something more akin to infinite dialogue, but believe that AI could be so much more to this equation without taking over everything outright.
 
+We also have a few more resources:
+
+Slides: https://docs.google.com/presentation/d/1a7vhVnTERsJ7BrqbDOIpUsaOg12oATS3dn0-uRKrsEY/edit?usp=sharing
+
+Drive with various sound files:
+https://drive.google.com/drive/folders/13W_1ksCVIyc8YuNdk9Px_mcn6uQP77nF
+
 Here's some demo material that we did and discoveries we made regarding TorToiSe:
 
 ### Machine Learning Architectures Used
