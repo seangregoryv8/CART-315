@@ -177,6 +177,8 @@ If anything, this reminded me that prototyping is less about building something 
 ## 3 Favourite Game Prototype Ideas from Last class
 ![alt text](image-7.png)
 
+For this class, I took 3 of my ideas that we had discussed from last week, expanded a bit upon them, and heavily delved into one of the topics, getting a prototype ready.
+
 ### Idea #1: Card RPG
 ![alt text](image-10.png)
 From the speed dating game prototype session, the two of us came up with an interesting idea: creating an RPG comprised entirely of a fictional card game. You come across various people with various skill levels, and must beat all of them within this tabletop game in order to progress.
