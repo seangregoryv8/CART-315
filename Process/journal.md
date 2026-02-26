@@ -177,24 +177,132 @@ If anything, this reminded me that prototyping is less about building something 
 ## 3 Favourite Game Prototype Ideas from Last class
 ![alt text](image-7.png)
 
-### Idea #1: Inscryption meets Dark Souls
-
+### Idea #1: Card RPG
+![alt text](image-10.png)
 From the speed dating game prototype session, the two of us came up with an interesting idea: creating an RPG comprised entirely of a fictional card game. You come across various people with various skill levels, and must beat all of them within this tabletop game in order to progress.
+
 An interesting factor, however, is the luck involved near the end of it. Each time you win or lose, a number of die will be rolled, determining your earnings, XP gained, or otherwise. Additionally, a special Dx20 die will be rolled where, given a high enough number, may gift you or the enemy a second chance at the game.
+
 However, your performance will be monitored and collected, allowing for you to only roll a certain number set (if you did very well, you may get any number below 8 completely taken out, allowing greater rewards. If you barely survived a win, you may only be able to roll as high as a 14).
+
 Each enemy will get some kind of special ability through the game that they can use, and you must use only your wits and own set of cards at certain levels in order to triumph!
 
-### Idea #2: Playable Final Destination scenario
+### Idea #2: 10 Minutes to Die
 
-A point-and-click visual novel kind of game, the plot is simple: you are a passenger on board an aircraft, and midway into the flight, you receive a premonition that the plane will completely explode by mysterious means. No engine failure, a pure act of God that cannot be avoided. This explosion will happen in exactly 10 minutes, meaning you have exactly 10 real-life minutes to live. What you do in that time is up to you.
-There are plenty of other passengers on board, and a variety of options for you to explore or even try to get as few casualities as possible. You can try to pursuade the passengers to believe you with certain good prompts, you can find someone sketchy, convince him to tell you his suitcase number, go underneath the plane, take a gun, and hijack the plane to emergency land it, getting everyone off before it explodes. You can try to bring everyone to the very back of the plane, or jump off at the right time in order to have a chance to survive.
+![alt text](image-8.png)
+
+
+A point-and-click visual novel kind of game that I had inspired by a flash game I played when I was younger, Don't Escape, the plot is simple: you are a passenger on board an aircraft, and midway into the flight, you receive a premonition that the plane will completely explode by mysterious means. No engine failure, a pure act of God that cannot be avoided. This explosion will happen in exactly 10 minutes, meaning you have exactly 10 real-life minutes to live. What you do in that time is up to you.
+
+It does sound like the opening plot of a popular film franchise Final Destination, where a character would have a premonition about a horrific accident that would claim many lives. The character would manage to stop the premonition from happening and spare a decent few lives, but Death (in this movie) would not forget, and would hunt down the survivors who managed to cheat him one by one. It has spanned a total of 6 mainline movies (1-5 numerically alongside a 6th called "Bloodlines")
+
+![alt text](image-9.png)
+
+In this game, there are plenty of other passengers on board, and a variety of options for you to explore or even try to get as few casualities as possible. You can try to pursuade the passengers to believe you with certain good prompts, you can find someone sketchy, convince him to tell you his suitcase number, go underneath the plane, take a gun, and hijack the plane to emergency land it, getting everyone off before it explodes. You can try to bring everyone to the very back of the plane, or jump off at the right time in order to have a chance to survive.
+
 Or you can do absolutely nothing, waiting out the time until the end. You'd only have two modes of player interaction besides on-text prompting: an inventory system for you to store valuables during the 10-minute playthrough, and a button to simply wait it out, whether you want to simply speed up the inevitable or have finished everything you can think of finishing.
+
 The choices are entirely up to you!
 
-### Idea #3: Generic RPG with an AI Dungeon Master
+### Idea #3: Chat-DND
 
 An idea that Bianca and I had was utilizing AI LLMs and creating a prototype from it. You would play as the village protector/hero, alongside a pre-set village filled with villagers. Each one will have unique personalities, things they like and dislike, their relationship with the player and others, and others.
+
 The kicker is that, at random times, there will be some randomly-timed events that will occur, for example, wolves invading where you must run them out, or enemy raiders, or even something as simple as moving cows around. Basic tasks, and ones that the AI will completely generate, and that the game will go along with.
+
 Additionally, there will be 2 other companions for you to get: a guy whose whole point is giving hints and instructing the player where to go, and another with a banjo guitar that will play constant music depending on whats happening.
 
-We decided to try out TorToiSe-TTS, alongside Alpaca, which can generate and say out things. We could've gone with something more akin to infinite dialogue, but believe that AI could be so much more to this equation without taking over everything outright.
+### TorToiSe_TTS
+https://github.com/neonbjb/tortoise-tts
+
+We decided to try out TorToiSe-TTS, alongside Ollama, which can generate and say out things. We could've gone with something more akin to infinite dialogue, but believe that AI could be so much more to this equation without taking over everything outright.
+
+Here's some demo material that we did and discoveries we made regarding TorToiSe:
+
+### Machine Learning Architectures Used
+1) **Autoregressive transformer (UnifiedVoice)**: Generates discrete speech codes step‑by‑step, similar to how GPT generates text.
+This stage determines pacing, phrasing, and rough prosody.
+It’s conditioned on voice latents extracted from reference clips.
+2) **Diffusion decoder (DiffusionTts)**: Refines the discrete codes into a high‑quality mel‑spectrogram.
+Diffusion makes audio smoother and more realistic.
+Tortoise uses conditioning‑free diffusion (two passes, blended) to improve realism.
+3) **Neural vocoder (UnivNet)**: Converts the mel‑spectrogram into a 24 kHz waveform.
+Vocoder quality is critical for natural speech.
+4) **Candidate ranking (CLVP / CVVP)**: Tortoise generates many candidates, then scores them.
+CLVP and CVVP help choose the best output for realism and voice match.
+
+### How It Was Trained
+> From Advanced_Usage.md:
+
+- Trained on ~50,000 hours of speech, primarily audiobooks.
+- Training took months on a homelab with 8× RTX 3090 GPUs.
+- Training used the author’s DLAS trainer.
+- Training configs are not released, so full reproduction is not possible.
+
+### Capabilities and Affordances
+What It Generates:
+
+- Speech audio only (24 kHz WAV).
+- It does not generate images, video, or music.
+
+Required Inputs:
+- Text prompt (what to say).
+- Optional reference voice clips (2–5 clean ~10s WAVs).
+- Optional settings (preset or advanced knobs).
+
+API / Interfaces Available
+- Python API: TextToSpeech in api.py and api_fast.py.
+- CLI scripts: do_tts.py, read.py, read_fast.py.
+- Socket streaming: socket_server.py (for real‑time style output).
+
+Creative Possibilities
+- Voice cloning / NPC dialogue
+- Narration (audiobook‑style voice)
+- Interactive installations (generative speech output)
+- Character design (mix and match voice latents)
+
+### Biases and Limitations
+> From Advanced_Usage.md
+
+Dataset bias
+- Audiobook data dominates → strong bias toward “narrator voice.”
+- Model performs poorly on strong accents and minority voices.
+
+Compute bias
+- High quality requires GPU. CPU is extremely slow.
+- Limits accessibility for people without GPUs.
+
+Input quality bias
+- Reference clips with noise/reverb perform worse.
+- Clean audio gives much better voice cloning.
+
+Ethical risks
+- Voice cloning can be misused.
+- Author provides a Tortoise‑detect classifier but notes it’s not perfect.
+
+### Bianca's Repo
+We put all our findings into this repository:
+https://github.com/Biwanka/CART498-GenAI/tree/main/Tortoise
+
+### Generated Audio
+
+Here were some pieces we generated for our experiment into this:
+
+![alt_text](./quest.png)
+
+<video width="320" height="240" controls>
+  <source src="./tortoise_4.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
+<video width="320" height="240" controls>
+  <source src="./tortoise_5.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+
+<video width="320" height="240" controls>
+  <source src="./tortoise_6.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
