@@ -212,6 +212,10 @@ The kicker is that, at random times, there will be some randomly-timed events th
 
 Additionally, there will be 2 other companions for you to get: a guy whose whole point is giving hints and instructing the player where to go, and another with a banjo guitar that will play constant music depending on whats happening.
 
+Here was the original pitch:
+
+> Fantasy RNG DND Generator, you play as a village hero that has to defend his village from a variety of task.<br>These can include raids, enemy encampments, or even something as simple as getting fruit or rescuing cats or something<br>The key is that AI will be usedto generate them, what scenarios they're in, and what is done when.<br>Each villager in the encampment will have certain levels of either paranoia, their own personality (AI generated), relationship with others, all figured out by AI.<br>Our personal guide, Chet Gipiti, will be our companion that either informs us on what we have to do, or provide commentary towards our journey.<br>We also have another guy, music man, who will be providing AI generated music that changes every single time, either calming, alerting, or hunting (something like that)
+
 ### TorToiSe_TTS
 https://github.com/neonbjb/tortoise-tts
 
