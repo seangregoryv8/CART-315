@@ -456,14 +456,42 @@ Once we get the AI wrking, I'll set up a test to get this functioning on Unity, 
 
 ## Questions
 
-We want to ask questions about whether AI could accurately recreate these completely real mental disorders from the horrors of war, hopefully using this as a thinkpiece against the war machine. We want to 
+One of the central questions guiding this project is whether artificial intelligence can accurately and respectfully represent real psychological conditions that arise from traumatic experiences such as war. In particular, the game explores characters experiencing symptoms consistent with Post-Traumatic Stress Disorder and related trauma responses.
+
+The goal is not simply to simulate these conditions mechanically, but to see whether AI-driven characters can express believable emotional narratives that reflect the complexity of trauma. If successful, each playthrough would present survivors with different stories, perspectives, and distorted beliefs shaped by their experiences.
+
+Another important question involves ethical representation. Trauma is a serious subject, and the design must avoid turning mental illness into a spectacle. Instead, the intention is to frame the player’s role as one of understanding and empathy, helping characters confront cognitive distortions and fears that stem from their wartime experiences.
+
+Finally, the project asks whether procedural storytelling through AI can support the game’s broader thematic goal: encouraging players to reflect on the human cost of war and to view the conflict not through victory or defeat, but through the psychological scars left behind.
 
 ## Fidelity Level
 
-This would likely be mid-fidelity, since much of this game will focus upon the AI characters and their stories, to see if we can get a truly unique game each time. 
+This prototype will likely operate at a mid-fidelity level. The visual and environmental systems may remain relatively simple compared to fully polished games, but significant effort will be placed on the AI characters and narrative interactions.
+
+The focus is on creating survivors who feel believable through dialogue, emotional reactions, and behavioral responses. AI systems will be responsible for generating variations in backstories, trauma responses, and conversations with the player. This approach allows the game to produce different characters and narratives in each playthrough, reinforcing the idea that trauma manifests differently for every individual.
+
+Because the emphasis is on character interaction rather than graphical realism, mid-fidelity visuals are acceptable for this stage of development. The prototype mainly aims to test whether the AI systems can produce consistent, meaningful narrative experiences rather than focusing on final presentation quality.
 
 ## What was learned
 
-Aside from the AI not working on my GPU, I learned of the various concepts that must be tested individually
+During early experimentation, several important lessons emerged. The most immediate technical limitation involved hardware compatibility, as the AI model initially tested was unable to run effectively on the available GPU. This highlighted the need to consider computational requirements when selecting AI frameworks for real-time or semi-real-time dialogue generation.
+
+Beyond technical issues, the design process also revealed that representing trauma realistically requires a deeper understanding of several psychological concepts. Conditions like Post-Traumatic Stress Disorder involve multiple overlapping symptoms, including hypervigilance, intrusive memories, avoidance behaviors, and emotional detachment. Each of these responses may need to be modeled separately in order to create believable character behavior.
+
+This realization led to the understanding that the AI system cannot simply generate random dialogue. Instead, individual psychological components—such as fear responses, distrust, survivor’s guilt, and distorted beliefs—may need to be structured or constrained within the AI’s narrative generation to maintain authenticity.
 
 ## Next steps
+
+Moving forward, the next stage of development will focus on testing and refining the AI-driven character system. Several key steps are planned:
+
+Evaluate AI frameworks that can run efficiently on available hardware while still generating meaningful dialogue and character responses.
+
+Develop structured narrative prompts that guide AI characters to express believable trauma-related behaviors without producing unrealistic or inconsistent stories.
+
+Prototype survivor archetypes, each representing different trauma responses (such as paranoia, survivor’s guilt, or emotional numbness) in order to test how varied AI-generated narratives can be.
+
+Test player interaction mechanics, particularly the dialogue system in the therapy room where the player identifies logical fallacies and distorted beliefs in the survivor’s reasoning.
+
+Assess ethical representation, ensuring that the portrayal of trauma remains respectful and meaningful rather than sensationalized.
+
+Through these steps, the project aims to determine whether AI can meaningfully contribute to procedural storytelling about trauma, while supporting the game’s broader goal of encouraging reflection on the psychological consequences of war.
