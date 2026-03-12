@@ -322,6 +322,10 @@ Here were some pieces we generated for our experiment into this:
 
 # Week 7 - March 12, 2026
 
+## More prototyping progress on the war game
+
+![alt text](IMG_3333.jpg)
+
 Now that we've gotten some time to think and plan out our desired goal, here would be the complete version of what we're going for:
 
 ## Story
@@ -341,6 +345,14 @@ I read a decent amount of Lovecraft books (again) to figure out which parts I wa
 ### War
 
 Watching various movies and reading various recounts of war demonstrate this exact same isolated feeling. When a soldier of war talks, he isn't really there. They say that a part of you dies when you kill your first man, and that you never truly leave the muddy trenches of battle, and they're right. For the characters in this to work, we need to have them not really be all there, never talking any more than they need to (unless you're at their near breaking point).
+
+### Others
+I also wanted to try a couple of games that I wanted to inspire the artstyle or aesthetic of the prototype. Two big ones I went for are No, I am Not a Human and Psychopomp.
+
+<img src="./image-11.png">
+<img src="./image-12.png">
+
+Both of these titles deal a lot with more surreal experiences, and both heavily centre around their characters. The humor in them is sharp, and still works incredibly well for what they do, with one being a more dissection and analysis game into not allowing humans to enter into your home, and the other being one of the most unhinged games ever made.
 
 ## Definitions
 
