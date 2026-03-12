@@ -319,3 +319,151 @@ Here were some pieces we generated for our experiment into this:
   <source src="./tortoise_6.mp4" type="video/mp4">
   Your browser does not support the video tag.
 </video>
+
+# Week 7 - March 12, 2026
+
+Now that we've gotten some time to think and plan out our desired goal, here would be the complete version of what we're going for:
+
+## Story
+
+You've been placed within a lone mansion, and aren't quite sure why. You believe you may have been a soldier before, and aren't quite sure if this is real. You seem to have an imaginary friend that follows you around, and he seems quite quaint. He discusses with you about what you have to do: scattered around this mansion are various survivors of war, each with their own stories and, more importantly, their own traumas. When you approach, they will not want to see you, seeing you as a monster prepared to kill them. They will open fire on you, and you need to tame them enough, providing enough suppressive fire for them to stop.
+
+Once they're more calm, you need to "lure" them into a central room in the house: the therapy room. You need to talk to them, convincing them that you're trustworthy, enough for them to slowly follow you into the room. Once you're there, you further discuss, finding fallicies in their arguments to diagnose them, and help them get over their traumas, enough for their souls to be freed from this strange mansion. This funny imaginary creature is there to guide you, and talking enough to him reveals his own true nature of a mad god who has trapped you into here. He has gone completely insane, and enjoys torturing you into doing his bidding. Eventually, you must find his own fallicies, and drive him further and further mad until he eventually horse-shoes back into a clear mind, finally letting you go.
+
+## Research
+
+I split the research into two parts: the Eldritch side and the War side.
+
+### Eldritch
+
+I read a decent amount of Lovecraft books (again) to figure out which parts I wanted to maintain for a psychotic, unhinged feeling game, one that I could put some less psychotic moments within for the tug at the heartstring moments. I noticed some patterns within the writing styles, specifically for how to write dialogue and characters. They all talk in a much more distant manner (if ever they talk at all). In reality, Lovecraft admitted that he wasn't good at writing dialogue, and that he wanted the characters to feel insignificant to the general plot of the story. This way, the dialogue grew to have a more isolated and insignificant feeling. For a character centric game like this, I wanted to put that deeper within the story, where the characters felt so isolated away from everything that you were somewhat forced or even encouraged to treat them like puzzles rather than people, further devolving into the madness of tis place.
+
+### War
+
+Watching various movies and reading various recounts of war demonstrate this exact same isolated feeling. When a soldier of war talks, he isn't really there. They say that a part of you dies when you kill your first man, and that you never truly leave the muddy trenches of battle, and they're right. For the characters in this to work, we need to have them not really be all there, never talking any more than they need to (unless you're at their near breaking point).
+
+## Definitions
+
+### PTSD
+
+Post-Traumatic Stress Disorder (PTSD) is a mental health condition that can develop after a person experiences or witnesses a traumatic event—such as violence, serious accidents, natural disasters, war, or life-threatening situations. The condition involves persistent stress reactions in the brain and body even after the danger has passed.
+
+PTSD affects how a person processes memories and emotions related to trauma. Symptoms usually last longer than one month and can significantly interfere with daily life, relationships, work, or sleep.
+
+### **Common Symptoms of PTSD**
+
+Mental health professionals typically group symptoms into four main categories:
+
+---
+1. Intrusive Memories
+
+These involve the trauma repeatedly entering a person’s thoughts.
+
+- Distressing memories of the traumatic event
+- Flashbacks (feeling as if the event is happening again)
+- Nightmares related to the trauma
+- Emotional or physical distress when reminded of the event
+---
+2. Avoidance
+
+People try to avoid reminders of the trauma.
+
+- Avoiding places, people, or activities that trigger memories
+- Avoiding talking or thinking about the traumatic event
+---
+3. Negative Changes in Mood and Thinking
+
+These changes affect how someone sees themselves, others, and the world.
+
+- Persistent negative thoughts about oneself or others
+- Feelings of guilt, shame, or blame
+- Emotional numbness or detachment from people
+- Loss of interest in activities once enjoyed
+- Difficulty remembering parts of the traumatic event
+---
+4. Changes in Arousal and Reactivity
+
+These symptoms reflect the body staying in a constant “alert” state.
+
+- Being easily startled or constantly on guard (hypervigilance)
+- Irritability or angry outbursts
+- Difficulty sleeping
+- Difficulty concentrating
+- Risky or self-destructive behavior
+
+## More exploration
+
+The mansion isn’t really about combat or puzzles—it’s about trauma. The people inside it are survivors of war, and the behaviors they show are meant to reflect the kinds of reactions people develop after experiencing something deeply terrifying. In particular, I’ve been reading about Post-Traumatic Stress Disorder (PTSD) and how it can shape the way someone sees the world long after the danger is gone.
+
+From what I understand, PTSD is a condition where a person’s mind and body remain stuck in survival mode after a traumatic event. Even when they’re safe, their brain continues reacting as if the threat is still present. People with PTSD often experience intrusive memories, nightmares, or flashbacks that make the event feel like it’s happening again. They might avoid reminders of the trauma entirely, withdraw from others, or feel emotionally numb. At the same time, their bodies can stay in a constant state of alertness—what psychologists call hypervigilance—where every sound or movement feels like it could signal danger.
+
+That idea explains why the survivors in the mansion react the way they do when the player approaches. They don’t see a helper—they see an enemy. Their minds have been trained by war to expect violence, so when they encounter someone unfamiliar, their first instinct is to defend themselves. The gunfire isn’t meant to make them enemies; it’s meant to show how fear and trauma can distort perception.
+
+Another concept I’ve been thinking about is cognitive distortion—how trauma can twist a person’s thoughts into patterns that reinforce fear or guilt. Some survivors might believe the war never ended, that everyone around them is trying to kill them, or that they deserve punishment for surviving when others didn’t. That last idea, survivor’s guilt, feels especially powerful. It’s the feeling that living through something that killed others is somehow wrong. In the game, these distorted beliefs are what the player has to confront during the conversations in the therapy room.
+
+The mansion itself is strange because it might not be a real place at all. It feels more like a shared mental space—a reflection of the survivors’ damaged memories and unresolved fears. The central therapy room becomes the only place where clarity can exist. Bringing someone there is less about physically escorting them and more about guiding them toward a moment where they can face their trauma instead of running from it.
+
+Then there’s the guide who follows the player around. At first he seems friendly, almost comforting, but the more I think about him, the more unsettling he becomes. He encourages the player forward, but there’s something manipulative about his presence. Eventually it becomes clear that he isn’t just a helper—he’s the one who trapped everyone here. In a way, he represents the chaotic force that feeds on suffering, pushing people to relive their trauma over and over.
+
+What interests me most is the final reversal. The player spends the whole game helping others confront the flaws in their thinking, guiding them toward healing. But in the end, that same process has to be turned on the guide himself. By pointing out the contradictions in his logic and the madness in his cruelty, the player slowly forces him to confront his own broken reasoning. The idea that someone can be pushed so far into madness that they eventually circle back into clarity feels strangely poetic.
+
+I think that’s really what the game is about: the possibility that even deeply fractured minds can move toward understanding. The mansion might be a prison, but the conversations inside it are attempts to unlock the doors.
+
+## Bianca's Drawings
+
+My teammate, Bianca, created some drawings based on some of the examples I had given her, such as Psychopomp, for the style. She designed multiple iterations, and settled on a rough, scratchy style, blending the colour of the trenches (the muddy brown mixed with the dried up deep red blood), and here is what that all looked like.
+
+<img src="./IMG_5321.jpg" width=250>
+<img src="./IMG_5322.jpg" width=250>
+<img src="./IMG_5323.jpg" width=250>
+<img src="./IMG_5324.jpg" width=250>
+<img src="./IMG_5325.jpg" width=250>
+<img src="./IMG_5327.jpg" width=250>
+<img src="./IMG_5328.jpg" width=250>
+<img src="./IMG_5329.jpg" width=250>
+<img src="./IMG_5331.jpg" width=250>
+<img src="./IMG_5333.jpg" width=250>
+
+Within these, she focused a lot more on trying to hide the faces, mostly letting the scars speak for themselves, and not directly tying any nationality or individual character.
+
+## AI
+
+For this, we initially wanted to (as mentioned above) use TorToiSe TTS for this, but I was unsuccessful in installing it. Trying multiple times for it, I finally found out that my GPU was too new for it. Luckily, Bianca was able to figure out another service for us to use: 
+
+https://github.com/coqui-ai/TTS.git
+
+This version can work on any GPU, still open source and (mostly) free, and works a lot quicker, essential for a game like this. The next step for this one specifically would be to get this AI working and to see how it functions within the bounds of Unity.
+
+## Mini Prototypes
+
+I worked on 3 separate mini prototypes to test out the 3 concepts for this game.
+
+### Concept 1: FPS
+
+This was the easiest one to work on, since Unity comes pre-packaged with an FPS template. I worked off that, followed a few tutorials and imported a couple of weapons I found online, it only taking a few hours to properly get right for the prototype we were thinking. The gunplay will not be too thourough, since it doesn't entirely matter as much as the others.
+
+### Concept 2: Luring
+
+For this, I had to start from scratch, where I would assign base pathfinding to a set area and, whenever the button was pressed, the block would follow the character. I had to set up spaces where it would stop at some small amount, and would only work when your line of sight was set towards them (and you were close enough). With some finagling, it managed to function (somewhat). Some bugs still need to be sorted.
+
+### Concept 3: Interrogation
+
+I set up a third mini prototype, following a tutorial for base dialogue boxes to be set up. Once I got that working, I then split each one into its individual words, allowing you to choose a word from the bunch to highlight it. It would then copy in your notepad, to which you could put those words together to "diagnose". More tests will need to be done.
+
+### Future test
+
+Once we get the AI wrking, I'll set up a test to get this functioning on Unity, combining the second and third concept in order to actually see it in action.
+
+## Questions
+
+We want to ask questions about whether AI could accurately recreate these completely real mental disorders from the horrors of war, hopefully using this as a thinkpiece against the war machine. We want to 
+
+## Fidelity Level
+
+This would likely be mid-fidelity, since much of this game will focus upon the AI characters and their stories, to see if we can get a truly unique game each time. 
+
+## What was learned
+
+Aside from the AI not working on my GPU, I learned of the various concepts that must be tested individually
+
+## Next steps
