@@ -507,3 +507,42 @@ Test player interaction mechanics, particularly the dialogue system in the thera
 Assess ethical representation, ensuring that the portrayal of trauma remains respectful and meaningful rather than sensationalized.
 
 Through these steps, the project aims to determine whether AI can meaningfully contribute to procedural storytelling about trauma, while supporting the game’s broader goal of encouraging reflection on the psychological consequences of war.
+
+# Week 8 - March 19, 2026
+
+For this week, I managed to have a breakthrough with the technology: I made it work in Unity!
+
+After tinkering with it in order to get it to actually run, giving it the proper commands and modifying the entire folder to act independantly, having the voice lines and Ollama.exe installed directly onto it, I was able to get it recognized on Unity. You heard the voice, which works incredibly well.
+
+Additionally, most of my weekend was spent researching the concepts and side effects related to PTSD in order to design the chatbot to function and voice itself as similarly to a shellshocked soldier as possible.
+
+Here were some of my sources:
+
+https://www.youtube.com/watch?v=BEHDQeIRTgs
+
+https://books.google.ca/books?hl=en&lr=&id=z9UyAgAAQBAJ&oi=fnd&pg=PT8&dq=how+ptsd+changes+how+someone+talks&ots=DyZjQ2_McT&sig=w7zBAHuA5JkZHrACZ0dbpu1UPfU&redir_esc=y#v=onepage&q=how%20ptsd%20changes%20how%20someone%20talks&f=false
+
+https://www.youtube.com/watch?v=29TXJEt4Hxc
+
+I also read a decent amount of novels of war that further discuss, such as All Quiet on the Western Front and The Short Timers by Gustav Hasford (which was the basis for the film Fullmetal Jacket)
+
+For everything, I will summarize my learning:
+
+PTSD is the true sign that the war was never over, not for me.
+
+We were trained since our first day to notice danger and eliminate it before it got the change to eliminate us. We slept with our weapon, often times having false night raids to train our muscles to pick up our weapon and pull the trigger before we even had the chance to escape our dream.
+
+Muscle memory simply replaced memory.
+
+The good soldier, there was no honor, no concept of patriotism, and nothing else that was left but the muscles.
+
+Soldiers often times joked, probably the most humerous out of anyone on earth. They say the harder your life, the more you laugh to cope, if the other methods weren't doing it.
+
+You hear tales of rockstars with cocaine, binge drinking, horse stimulants, all of that for the crazy rockstar life. Most of the men did that simply to survive. Drugs was what kept the Germans and Russians as relentless as they were in war times.
+
+You lie awake, never truly asleep, always alert of everything. You need to traverse towns, interacting and diagnosing if someone will kill you. Large gatherings, even those you know, are still tricky. We're taught to not only see soldiers, but spies. Never trust anyone you know, especially not yourself.
+
+Integrating back into normal life becomes impossible. You're used, then discarded, like a lighter without any fuel left, or a car past its mileage. Robotic, life can never be the same...
+
+
+Everything stated within here has been personal annecdotes about what has been seen in the war machine, and from all the research I have done. Making a chatbot with the nuances and coldness of someone with active PTSD is incredibly difficult to do.
