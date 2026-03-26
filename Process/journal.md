@@ -546,3 +546,78 @@ Integrating back into normal life becomes impossible. You're used, then discarde
 
 
 Everything stated within here has been personal annecdotes about what has been seen in the war machine, and from all the research I have done. Making a chatbot with the nuances and coldness of someone with active PTSD is incredibly difficult to do.
+
+# Week 9 - March 26, 2026
+
+This week, I focused on one detail alone: Making the mansion that the entire game would take place in.
+
+## Assets
+
+I was highly incentivised to take from the following Unity Asset Package:
+
+https://assetstore.unity.com/packages/3d/environments/dungeons/cathedral-and-cemetery-kit-29240
+
+This gives you a whole bunch of Cathedral Kits that look low-poly enough for a prototype, but advanced enough for you to know what it actually is.
+When downloaded, however, and put on a new unity project, I found that most of the pre-built churches were closed off entirely, not being enterable.
+The ones that weren't closed off, I attempted to put some new shapes to add floors, but it was too messy and had no sense towards it.
+I found some floor texture assets and tried to place them in, but they looked too out of place.
+The worst part, however, was that these were completely singular assets, and couldn't be changed. If we wanted a bigger cathedral, or to have some more addons, that just wouldn't work.
+Walls weren't even included to separate parts in order to have actual rooms.
+
+I decided, after a bit, that it simply wouldn't do, and decided to make my own mansion completely from scratch.
+
+However, that's when I ran into my own problem: I've never worked in Unity assets before, and barely worked in Unity.
+Last semester, I did Blender and Unreal for the first time ever for 498. That was my first time working with technology like that in my life, so I was very much out of my depth.
+And while I wouldn't have minded learning, time constraints made that impossible.
+
+I decided to do a mixture, where I would take assets and pseudo-construct new structures from it. After a few hours of experimentation, I finally decided on a continuous wall structure that would make up the main skeleton of the mansion:
+
+<img src="./wall.png" width=1000>
+
+This wall uses a main fence post scaled up by two, with two stone walls.
+The top one is rotated 180 degrees on the Y access, basically upside down, so that it forms something continuous-looking. This program is put within an empty object and then moved 5 continuous degrees either within the X or Z axis to form a continuous wall structuring.
+
+This turned out to be a major godsend, since it allowed me to scale to my hearts content, making the mansion as big as I wanted. And the best part was that, after adding in a floor, I was then able to completely copy and paste it twice, putting the structures up by a few degrees on the Y axis to form a 3-story mansion where the entire game would take place, with everything actually looking pretty good in the process!
+
+## Entrance
+
+I knew that I wanted the game to have an intro sequence where we would actually sort of walk into the room, or at least for it to serve as more than just a three story box. I found an archway within its assets that I scaled up by two and used as its walkway, given that there were only two types of doors available, neither of which looked good when given a script to allow them to open. I kept it open, but the geometry was weird, providing little cracks in its corners. That was quickly solved when I found a beam that I scaled down in order to hide it, and that was that!
+
+As a side note, I had to use beams a few times for the first person walking that I was using, in order to actually have you not get stuck on the geometry that you're meant to walk up or down on.
+
+<img src="./door.png" width=1000>
+
+## Stairs
+
+For the stairs going up and down, I found a singular staircase model within the assets (since I really didn't want to have to make my own staircase using repeating beams). It looked fine enough, but presented with its own problems: when staring at it from the back, the texture completely disappears, and when scaled too large, it becomes unclimbable. I solved the first issue with something I learned way back when I was a teenager building large structures in Minecraft: have a stair texture facing opposite direction from it to feel like a repeating structure.
+
+<img src="./stairs.png" width=1000>
+
+Additionally, for the scaling, I found a good amount that could actually reach the second floor evenly without needing to update my walking script to account for higher elevation. Now, we had something clean.
+
+Another strange issue I had, however, was cutting out the floor to make room for the stairs. I had to split my floor using simple mathematics, making 3 floor textures to cover each part.
+
+Finally, I copied that similar staircase going from the second to the third floor, but that presented an interesting problem of it overshooting the flooring. That was solved, however, by using a common architectural pattern of elevating the landing strip at the top and building a two-step system down to the main floor, making it feel slightly more modern, a welcome addition.
+
+<img src="./cutout.png" width=1000>
+
+
+## Fine tuning the floor
+
+Now that I had openings in my floor where you could see stretched texturing, I needed some way to cover it up.
+
+This is where beams, once again, became my best friend. By using them to act as "supports" for the flooring, I could hide away the stretched texturing while adding more personality to the floor. A win win!
+
+## Therapy Room
+
+Now that I had a clean way to get into the mansion and get to all the floors, I now needed our main gimmick: a therapy room.
+
+I simply cut out part of the first floor and extended it out into its own little room, sealing it off and putting a door within (which took another half hour of time to look right).
+
+<img src="./therapyRoom.png" width=1000>
+
+I ended up putting a wood-like texture on top to hide the strange apperature in the wall above the door (which doesn't currently open). Finally, inside, I put two pews, one large and small, alongside a lectern to act as placeholder objects for the therapy couch, the seat you'd be in to initiate the therapy, and the holding place for the diary to be.
+
+## Optional Balcony
+
+Solely because I thought it would look cool
