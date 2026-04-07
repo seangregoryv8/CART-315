@@ -549,6 +549,8 @@ Everything stated within here has been personal annecdotes about what has been s
 
 # Week 9 - March 26, 2026
 
+<img src="./image-13.png" width=1000>
+
 This week, I focused on one detail alone: Making the mansion that the entire game would take place in.
 
 ## Assets
@@ -618,6 +620,57 @@ I simply cut out part of the first floor and extended it out into its own little
 
 I ended up putting a wood-like texture on top to hide the strange apperature in the wall above the door (which doesn't currently open). Finally, inside, I put two pews, one large and small, alongside a lectern to act as placeholder objects for the therapy couch, the seat you'd be in to initiate the therapy, and the holding place for the diary to be.
 
+<img src="./therapyRoom2.png" width=1000>
+
+
 ## Optional Balcony
 
-Solely because I thought it would look cool
+Solely because I thought it would look cool, I decided to have an overhanging balcony on the third floor, hopefully to allow more light in to naturally illuminate the third floor. Plus, I wanted distinction between the second and third floor. I found another fence structure that I used as the railings of the balcony, and simply cut out part of the wall, putting another equal floor to extend outside of the mansion.
+
+## Lighting
+
+I had to look this one up online, but I found a cool asset structure that allowed for 11 different night skies, alongside a tutorial on how to regenerate and bake lighting to not make everything look like you have cat's eye vision. Once I finished with that, everything had a cool stylistic nighttime feel to it. This allowed me to focus a bit of my time on adding in some point lights to artificially illuminate the mansion.
+
+## COQUI AI
+
+Finally, now was the time to implement the AI, after multiple days of constructing this mansion. I had already managed to make AI work on another Unity project, so I knew exactly what to do. I made the folders, made AIManager, imported all 2 gigabytes of the AI TTS folder into my unity project, and tied things together so I would hear "Hello from Unity". This only took 10 minutes, given that I already knew what to do.
+
+However, I wasn't going to end the week just doing that. I wanted to finish with the ability to press E on an "NPC" and for the script to then run and respond back to me.
+
+I followed another tutorial to implement a very basic NPC system where you could press E in a designated area where an asset would sit and it would trigger a script to run. I put a tombstone in place of a character asset and tied everything together, and after 20 seconds of runtime and lots of finnicking around with things, it actually worked! I was able to press E and heard something happen!!
+
+## What's next?
+
+A big thing I want to do next is to actually separate the 20 seconds it takes for the AI to boot up with the 2 seconds it takes to speak. If I can divide that up, to where the AI boots up at launch or even in a loading screen, that would be exactly what I'm looking for. Now that everything in there is done, all that's left is to populate the place with the necessary NPCs, make the door interactible, and decorate the mansion with lights and little knick-knacks. This week has been incredibly productive, and now I have a fancy hand-crafted and structurally solid three-story mansion to call my own!... in Unity.
+
+# Week 10 - April 2, 2026
+
+## Expanding the Environment Scale
+
+This week, a major focus of my work was on significantly expanding the playable environment. Originally, the scene was confined to a relatively small 10x10 area, which felt restrictive and limited in terms of exploration and immersion. I increased the size of the terrain to a much larger 30x30 space, instantly creating a stronger sense of openness. This change allowed for more thoughtful placement of environmental elements and gave the player a better feeling of being situated within a larger world rather than a confined test space. The increased scale also laid the groundwork for more complex level design decisions moving forward.
+
+## Enhancing Atmosphere with Vegetation
+
+After expanding the terrain, I shifted my attention to improving the visual atmosphere of the environment. I explored the available asset library and selected several tree models to populate the area. Using Unity’s terrain tools, I distributed these trees across the landscape in a natural, somewhat uneven pattern to avoid repetition and artificiality. This addition dramatically changed the tone of the environment—what was once a relatively empty space began to feel more abandoned, overgrown, and “lived in.” The density and placement of the trees helped suggest a world that exists beyond the player’s immediate actions, contributing to environmental storytelling.
+
+For this, I used 3 different trees from an available asset on the Unity store.
+
+## Removing Placeholder Structures
+
+As part of refining the scene, I removed the pre-set mansion that had previously been used as a placeholder reference. While it was helpful during early prototyping, it no longer aligned with the direction I wanted for the environment. Removing it allowed me to rethink the layout and flow of the space without being constrained by temporary assets. This step marked a transition from rough prototyping toward a more intentional and polished design.
+
+## Guiding the Player with Environmental Design
+
+To help direct the player’s movement and make the objective clearer, I introduced several guiding elements into the environment. I added a fence that acts as both a visual boundary and a subtle gameplay cue, suggesting a path the player is meant to follow or pass through. In addition, I created a defined pathway leading toward the intended destination. These elements work together to naturally guide the player without relying on explicit instructions or UI markers.
+
+## Using Lighting to Reinforce Direction
+
+Lighting played an important role in strengthening player guidance. I added two strong spotlights: one directed toward the player’s starting position and another aimed toward the mansion area (or intended focal point). These lights serve as visual anchors, drawing the player’s attention and reinforcing the direction they should move in. By combining lighting with environmental cues like the path and fence, I was able to create a clearer and more intuitive navigation experience.
+
+## Creating a Sense of World Boundaries
+
+Finally, I used Unity’s terrain sculpting tools to build up mountains and elevated landscapes around the outer edges of the map. This was an important step in making the environment feel complete and grounded. Without these boundaries, the terrain risked feeling like a floating platform or an unfinished space. The addition of mountains helped enclose the environment in a natural way, giving the impression that the playable area exists within a larger world. It also subtly prevents the player from straying too far off course while maintaining immersion.
+
+## Reflection on Progress
+
+Overall, this week’s work focused on transforming the environment from a basic prototype into a more immersive and intentional space. By expanding the terrain, adding vegetation, refining structures, and using lighting and terrain design strategically, I was able to create a stronger sense of atmosphere and direction. These changes not only improve the visual quality of the scene but also enhance the player’s experience by making the world feel more believable and easier to navigate.
