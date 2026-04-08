@@ -649,11 +649,16 @@ A big thing I want to do next is to actually separate the 20 seconds it takes fo
 
 This week, a major focus of my work was on significantly expanding the playable environment. Originally, the scene was confined to a relatively small 10x10 area, which felt restrictive and limited in terms of exploration and immersion. I increased the size of the terrain to a much larger 30x30 space, instantly creating a stronger sense of openness. This change allowed for more thoughtful placement of environmental elements and gave the player a better feeling of being situated within a larger world rather than a confined test space. The increased scale also laid the groundwork for more complex level design decisions moving forward.
 
+<img src="./1.png" width=1000>
+
+
 ## Enhancing Atmosphere with Vegetation
 
 After expanding the terrain, I shifted my attention to improving the visual atmosphere of the environment. I explored the available asset library and selected several tree models to populate the area. Using Unity’s terrain tools, I distributed these trees across the landscape in a natural, somewhat uneven pattern to avoid repetition and artificiality. This addition dramatically changed the tone of the environment—what was once a relatively empty space began to feel more abandoned, overgrown, and “lived in.” The density and placement of the trees helped suggest a world that exists beyond the player’s immediate actions, contributing to environmental storytelling.
 
 For this, I used 3 different trees from an available asset on the Unity store.
+
+<img src="./5.png" width=1000>
 
 ## Removing Placeholder Structures
 
@@ -663,13 +668,19 @@ As part of refining the scene, I removed the pre-set mansion that had previously
 
 To help direct the player’s movement and make the objective clearer, I introduced several guiding elements into the environment. I added a fence that acts as both a visual boundary and a subtle gameplay cue, suggesting a path the player is meant to follow or pass through. In addition, I created a defined pathway leading toward the intended destination. These elements work together to naturally guide the player without relying on explicit instructions or UI markers.
 
+<img src="./4.png" width=1000>
+
 ## Using Lighting to Reinforce Direction
 
 Lighting played an important role in strengthening player guidance. I added two strong spotlights: one directed toward the player’s starting position and another aimed toward the mansion area (or intended focal point). These lights serve as visual anchors, drawing the player’s attention and reinforcing the direction they should move in. By combining lighting with environmental cues like the path and fence, I was able to create a clearer and more intuitive navigation experience.
 
+<img src="./3.png" width=1000>
+
 ## Creating a Sense of World Boundaries
 
 Finally, I used Unity’s terrain sculpting tools to build up mountains and elevated landscapes around the outer edges of the map. This was an important step in making the environment feel complete and grounded. Without these boundaries, the terrain risked feeling like a floating platform or an unfinished space. The addition of mountains helped enclose the environment in a natural way, giving the impression that the playable area exists within a larger world. It also subtly prevents the player from straying too far off course while maintaining immersion.
+
+<img src="./2.png" width=1000>
 
 ## Reflection on Progress
 
